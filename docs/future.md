@@ -36,10 +36,3 @@ Additionally, any object which contains a `.test()` method can be used as an rty
 ```js
 const Alpha = /[a-zA-Z]+/;
 ```
-
-### Inspiration
-
-Great ideas stolen from:
-
-* TypeScript
-* React PropTypes
