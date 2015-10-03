@@ -4,23 +4,16 @@ Runtime accessible, gradual, structural types for JavaScript
 
 ## About rtype
 
-rtype is two things:
-* A way to document function signatures that should look familiar to any JavaScript user.
-* A way to check types at runtime.
+* A way to document function signatures and datastructures that should look familiar to any JavaScript user.
 
 
 ## Why?
 
-rtype exists for two purposes:
+Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, including JSDoc, but in my opinion, the syntax is overly verbose, and a pain to maintain.
 
-* Clearer documentation for JavaScript APIs
-* Runtime accessible type checking
+The TypeScript Interface is a very interesting idea, but what if I don't want to use TypeScript for my project? What if I just want to clearly document an API in a README? What if I want runtime type checks, similar to React.PropTypes?
 
-There are lots of great type tools out there now, but I'm not satisfied with any of them. TypeScript is a compile-to-JavaScript superset of JS that is only very useful at compile time, but there are some great uses for types at runtime as well.
-
-For instance, in dataflow programming, it's common to have many components that can connect to each other's inputs and outputs dynamically. It would be very interesting to be able to query a component for its interface at runtime so that you can determine which components are compatible with each other.
-
-This has applications in dataflow programming, but it can also be useful for live (aka hot loading) debuggers or software with integrated IDEs (e.g., many game engines include integrated game editors).
+I want a type syntax that is very clear to modern JavaScript developers, infinitely expressive, and usable for runtime type checks.
 
 
 ## What is an rtype?
@@ -98,7 +91,7 @@ rtype User {
 }
 ```
 
-By default, all values are optional. If you need to specify additional restrictions, you can:
+By default, all values are optional. If you need to mark a field as required, you can:
 
 ```js
 rtype User {
