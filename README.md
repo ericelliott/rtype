@@ -1,6 +1,6 @@
 # rtype
 
-Runtime accessible, gradual, structural types for JavaScript
+Intuitive type documentation for JavaScript.
 
 ## About rtype
 
@@ -11,19 +11,16 @@ Runtime accessible, gradual, structural types for JavaScript
 
 Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, including JSDoc, but in my opinion, the syntax is overly verbose, and a pain to maintain.
 
-The TypeScript Interface is a very interesting idea, but what if I don't want to use TypeScript for my project? What if I just want to clearly document an API in a README? What if I want runtime type checks, similar to React.PropTypes?
+The TypeScript Interface is a very interesting idea, but is it possible to make it more intuitive?
 
-I want a type syntax that is very clear to modern JavaScript developers, infinitely expressive, and usable for runtime type checks.
+I want a type syntax that is very clear to modern JavaScript developers (ES2015+).
 
 
 ## What is an rtype?
 
 An rtype is a string that represents the type of a variable in JavaScript.
 
-Functions have two types:
-
-* Function
-* a special type known as a `signature` which is represented by a string
+Functions have a `Signature` which is represented by a string.
 
 
 ## Reading Function Signatures
@@ -37,8 +34,9 @@ Each function is described by a **function signature**. The function signature t
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-({ count = 0: Number }) => Number
-(...args: String) => Object
+({ count = 0: Number }) => Any
+(...args: String) => Any
+([ firstIndex ]) => Any
 ```
 
 Type names can be any builtin JavaScript type, e.g.:
@@ -70,7 +68,7 @@ The special type `Any` means that any type is allowed:
 Union types are denoted with the OR operator, `||`:
 
 ```js
-(input: String||Number) => String||Number;
+(input: String || Number) => String || Number;
 ```
 
 ### User Defined Types
