@@ -6,6 +6,10 @@ Intuitive type documentation for JavaScript.
 
 * Compiler-free type documentation.
 
+## Status
+
+Developer preview. Breaking changes expected.
+
 
 ## Why?
 
