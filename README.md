@@ -65,7 +65,7 @@ Number[]
 The special type `Any` means that any type is allowed:
 
 ```js
-(...args: Any) => Array
+(...args: Any): Array
 ```
 
 ### Union Types
