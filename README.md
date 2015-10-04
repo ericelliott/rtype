@@ -147,7 +147,9 @@ interface stamp (obj) => {
 }
 ```
 
-Looking into the future, all of this could eventually be specified inline in ES6 with no compile step:
+## Future
+
+[Looking into the future](docs/future.md), all of this could eventually be specified inline in ES6 with no compile step:
 
 ```js
 import rtype from 'rtype';
