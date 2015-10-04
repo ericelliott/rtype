@@ -25,85 +25,138 @@ I want a type syntax that is very clear to modern JavaScript developers (ES2015+
 
 An rtype is a string that represents the type of a variable in JavaScript.
 
-Beyond the basic `Function` type, functions also have signatures, which are made up of parameter and return types.
-
 
 ## Reading Function Signatures
 
-Each function is described by a **function signature**. The function signature tells you each parameter and its type, separated by a colon, and the corresponding return type:
+Function types are described by a **function signature**. The function signature tells you each parameter and its type, separated by a colon, and the corresponding return type:
 
 ```js
-funtionName(param: Type): ReturnType
+(param: type): returnType
 ```
 
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-func1({ count = 0: Number }): Any
-func2(...args: String): Any
-func3([ firstIndex ]): Any
+({ count = 0: number }): any
+(...args: string): any
+(firstIndex[]): any
 ```
 
-Type names can be any builtin JavaScript type, e.g.:
+### Optional Parameters
+
+Optional parameters can be indicated with `?`:
 
 ```js
-Boolean, Number, String, Array, Object
+User({ name: string, avatarUrl? }): User
 ```
-
 
 ### Array Types
 
 Arrays with typed contents can be represented like this:
 
 ```js
-Number[]
+number[]
 ```
 
+### The `any` Type
 
-### The `Any` Type
-
-The special type `Any` means that any type is allowed:
+The special type `any` means that any type is allowed:
 
 ```js
-(...args: Any): Array
+(...args: any): array
 ```
+
 
 ### Union Types
 
 Union types are denoted with the OR operator, `||`:
 
 ```js
-(userInput: String || Number): String || Number;
+(userInput: string || number): string || number;
 ```
 
-### User Defined Types
+### Builtin Types
 
-User-defined types can be any word that is not reserved:
+```js
+boolean, number, string, array, object, func
+```
+
+Here, `func` stands in for `function` because `function` is a reserved word.
+
+You can instead describe a function's signature using a function `interface`:
+
+```js
+User({ name: string, avatarUrl? }): user
+```
+
+You can also use the generic `interface` syntax:
+
+```js
+interface User {
+  ({ name: string,  avatarUrl? }): User
+}
+```
+
+
+### Interface: User Defined Types
+
+You can create your own types using `interface`:
 
 ```js
 User, Record, Avatar, Cart
 ```
 
-User defined types look like object literals:
+An interface spells out the structure of the object:
 
 ```js
-User {
-  name: String,
-  avatarUrl: Url,
-  about: String
+interface user {
+  name: string,
+  avatarUrl?: url,
+  about?: string
 }
 ```
 
-By default, all values are optional. If you need to mark a field as required, you can:
+By default, all values are required.
+
+
+There's a shorthand for type literal forms:
 
 ```js
-User {
-  name: required(String)
-  avatarUrl: Url,
-  about: String
+interface user {
+  name: /\w+/,
+  description?: ''
+  likes?: [],
+  data?: {}
 }
 ```
 
+A one-line interface doesn't need brackets:
+
+```js
+interface name: /\w+/
+```
+
+And arrow functions:
+
+```js
+interface stamp (obj) => {
+  return typeof obj === 'function' &&
+    typeof obj.compose === 'function';
+}
+```
+
+Looking into the future, all of this could eventually be specified inline in ES6 with no compile step:
+
+```js
+import rtype from 'rtype';
+
+const isStamp = (obj) => {
+  return typeof obj === 'function' &&
+    typeof obj.compose === 'function';
+};
+
+const Stamp = rtype`interface stamp ${ isStamp }`;
+```
 
 ## References
 
