@@ -1,0 +1,29 @@
+{
+  "name": "rtype",
+  "version": "1.0.0",
+  "description": "Intuitive type notation for JavaScript.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "babel-node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericelliott/rtype.git"
+  },
+  "keywords": [
+    "type",
+    "types",
+    "type",
+    "annotation",
+    "annotation"
+  ],
+  "author": "Eric Elliott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericelliott/rtype/issues"
+  },
+  "homepage": "https://github.com/ericelliott/rtype#readme"
+}
