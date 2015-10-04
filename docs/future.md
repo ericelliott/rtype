@@ -22,14 +22,14 @@ A function can be used as an rtype, as long as it has the following signature:
 **Example:**
 
 ```js
-import { rtype, string, required } from 'rtype';
+import { rtype, string } from 'rtype';
 import isUrl from './utils/is-url';
 
 const url = rtype(isUrl);
 
 const user = rtype({
-  name: required(string),
-  avatarUrl: url,
-  about: string
+  name: string,
+  avatarUrl?: url,
+  about?: string
 });
 ```
