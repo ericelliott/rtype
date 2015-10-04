@@ -49,7 +49,7 @@ To make the signature familiar to readers, we use common JavaScript idioms such 
 Optional parameters can be indicated with `?`:
 
 ```js
-User({ name: string, avatarUrl? }): User
+(param: type, optParam?: type): returnType
 ```
 
 ### Array Types
@@ -85,17 +85,17 @@ boolean, number, string, array, object, func
 
 Here, `func` stands in for `function` because `function` is a reserved word.
 
-You can instead describe a function's signature using a function `interface`:
+You can also describe a function's signature using a function `interface`:
 
 ```js
-User({ name: string, avatarUrl? }): user
+user({ name: string, avatarUrl?: url }): user
 ```
 
 You can also use the generic `interface` syntax:
 
 ```js
-interface User {
-  ({ name: string,  avatarUrl? }): User
+interface user {
+  ({ name: string,  avatarUrl?: url }): user
 }
 ```
 
@@ -105,7 +105,7 @@ interface User {
 You can create your own types using `interface`:
 
 ```js
-User, record, avatar, cart
+user, record, avatar, cart
 ```
 
 An interface spells out the structure of the object:
@@ -159,7 +159,9 @@ const isStamp = (obj) => {
     typeof obj.compose === 'function';
 };
 
-const stamp = rtype`interface stamp ${ isStamp }`;
+const stamp = rtype(isStamp);
+
+stamp({}); // false
 ```
 
 ## References

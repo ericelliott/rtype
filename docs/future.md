@@ -11,6 +11,8 @@ alpha(3); // false
 check(alpha, 3); // false
 ```
 
+Any object which contains a `.test()` method (like regular expressions) can be used as an rtype.
+
 A function can be used as an rtype, as long as it has the following signature:
 
 ```js
@@ -30,10 +32,4 @@ const user = rtype({
   avatarUrl: url,
   about: string
 });
-```
-
-Additionally, any object which contains a `.test()` method (like regular expressions) can be used as an rtype.
-
-```js
-const Alpha = /[a-zA-Z]+/;
 ```
