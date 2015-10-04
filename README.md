@@ -1,6 +1,6 @@
 # rtype
 
-Intuitive type notation for JavaScript.
+Intuitive gradual structural type notation for JavaScript.
 
 ## About rtype
 
