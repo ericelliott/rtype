@@ -3,35 +3,36 @@
 Rtypes can be checked at runtime:
 
 ```js
-import check from 'rtype';
+import { rtype, check } from 'rtype';
 
-const Alpha = /[a-zA-Z]+/;
+const alpha = rtype(/[a-zA-Z]+/);
 
-const isAlpha = check(Alpha);
-isAlpha(3); // false
-
-check(Alpha, 3); // false
+alpha(3); // false
+check(alpha, 3); // false
 ```
 
 A function can be used as an rtype, as long as it has the following signature:
 
 ```js
-(Any) => Boolean
+(any): boolean
 ```
 
 **Example:**
 
 ```js
-const Url = rtype('Url', (url) => isUrl(url));
+import { rtype, string, required } from 'rtype';
+import isUrl from './utils/is-url';
 
-const User = rtype('User', {
-  name: required(String),
-  avatarUrl: Url,
-  about: String
+const url = rtype(isUrl);
+
+const user = rtype({
+  name: required(string),
+  avatarUrl: url,
+  about: string
 });
 ```
 
-Additionally, any object which contains a `.test()` method can be used as an rtype, including regular expressions:
+Additionally, any object which contains a `.test()` method (like regular expressions) can be used as an rtype.
 
 ```js
 const Alpha = /[a-zA-Z]+/;
