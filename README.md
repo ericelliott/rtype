@@ -121,7 +121,7 @@ interface user {
 By default, all values are required.
 
 
-There's a shorthand for type literal forms:
+There's a shorthand for builtin literal types:
 
 ```js
 interface user {
