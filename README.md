@@ -1,10 +1,12 @@
 # rtype
 
-Intuitive type documentation for JavaScript.
+Intuitive type notation for JavaScript.
 
 ## About rtype
 
-* Compiler-free type documentation.
+* Compiler-free type notation.
+* Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
+
 
 ## Status
 
