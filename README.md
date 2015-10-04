@@ -105,7 +105,7 @@ interface User {
 You can create your own types using `interface`:
 
 ```js
-User, Record, Avatar, Cart
+User, record, avatar, cart
 ```
 
 An interface spells out the structure of the object:
@@ -157,7 +157,7 @@ const isStamp = (obj) => {
     typeof obj.compose === 'function';
 };
 
-const Stamp = rtype`interface stamp ${ isStamp }`;
+const stamp = rtype`interface stamp ${ isStamp }`;
 ```
 
 ## References
