@@ -1,4 +1,4 @@
-# rtype
+# Rtype
 
 Intuitive structural type notation for JavaScript.
 
@@ -7,16 +7,20 @@ Intuitive structural type notation for JavaScript.
 > We've had some good times.
 > But it's over. I've moved on.
 > 
-> I've switched to rtype.
+> I've switched to Rtype.
 > Now my interface docs are alive!
 > 
 > ~ Eric
 
 
-## About rtype
+## About Rtype
 
-* Compiler-free type notation.
+* Compiler-free type notation. 
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
+
+## What is Rtype?
+
+Rtype is a JS-native representation of structural type interfaces with a TypeScript-inspired notation that's great for documentation.
 
 
 ## Status: RFC
@@ -31,14 +35,21 @@ Breaking changes expected.
 Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, but I don't like them, for various reasons.
 
 * JSDoc is too verbose, not intuitive, and painful to maintain.
-* TypeScript's structural types are very appealing, but currently somewhat difficult to integrate into workflows that don't have explicit support for it.
+* TypeScript's structural types are very appealing, but opting into TypeScript's JS superset and runtime limitations is not.
 
-I want a type syntax that is very clear to modern JavaScript developers (ES2015+), that could potentially be used at runtime with simple utilities.
+I want a type representation that is very clear to modern JavaScript developers (ES2015+), that could potentially be used at runtime with simple utilities.
 
 
-## What is an rtype?
+## Why Not Just Use TypeScript?
 
-An rtype is a string that represents the type of a variable in JavaScript. By default, all values are required.
+I want the best of all worlds:
+
+* A runtime accessible type system (even in production) with optional runtime type checks (like React.PropTypes -- only in development mode).
+* An easy way to generate interface documentation like JSDoc.
+* An intuitive way to describe interfaces for the purposes of documentation, particularly function signatures.
+
+TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn type checking on and off. AFAIK, that's not possible with TypeScript.
+
 
 
 ## Reading Function Signatures
