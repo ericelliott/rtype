@@ -131,6 +131,18 @@ interface user {
 }
 ```
 
+Interfaces support object spread:
+
+```js
+interface user {
+  name: string,
+  avatarUrl?: url,
+  about?: string,
+  ...properties?: any
+}
+```
+
+
 By default, all values are required.
 
 
