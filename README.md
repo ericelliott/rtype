@@ -46,6 +46,17 @@ To make the signature familiar to readers, we use common JavaScript idioms such 
 (firstIndex[]): any
 ```
 
+Optionally, you may name the return value, similar to named parameters:
+
+```js
+(param: type): name: type
+```
+
+e.g.:
+```js
+connect(options: object): connection: object
+```
+
 ### Optional Parameters
 
 Optional parameters can be indicated with `?`:
