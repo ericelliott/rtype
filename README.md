@@ -145,12 +145,6 @@ interface user {
 }
 ```
 
-A one-line interface doesn't need brackets:
-
-```js
-interface name: /\w+/
-```
-
 And arrow functions:
 
 ```js
@@ -159,6 +153,14 @@ interface stamp (obj) => {
     typeof obj.compose === 'function';
 }
 ```
+
+
+A one-line interface doesn't need brackets:
+
+```js
+interface name: /\w+/
+```
+
 
 ## Future
 
