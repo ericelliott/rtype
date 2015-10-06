@@ -2,15 +2,15 @@
 
 Intuitive structural type notation for JavaScript.
 
-Dear JSDoc,
-
-We've had some good times.
-But it's over. I've moved on.
-
-I've switched to rtype.
-Now my interface docs are alive!
-
-~ Eric
+> Dear JSDoc,
+>
+> We've had some good times.
+> But it's over. I've moved on.
+> 
+> I've switched to rtype.
+> Now my interface docs are alive!
+> 
+> ~ Eric
 
 
 ## About rtype
