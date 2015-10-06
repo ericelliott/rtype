@@ -8,9 +8,11 @@ Intuitive gradual structural type notation for JavaScript.
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
 
 
-## Status
+## Status: RFC
 
-Developer preview. Breaking changes expected.
+Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/new).
+
+Breaking changes expected.
 
 
 ## Why?
