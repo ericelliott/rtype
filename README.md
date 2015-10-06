@@ -27,7 +27,7 @@ I want a type syntax that is very clear to modern JavaScript developers (ES2015+
 
 ## What is an rtype?
 
-An rtype is a string that represents the type of a variable in JavaScript.
+An rtype is a string that represents the type of a variable in JavaScript. By default, all values are required.
 
 
 ## Reading Function Signatures
@@ -141,9 +141,6 @@ interface user {
   ...properties?: any
 }
 ```
-
-
-By default, all values are required.
 
 
 There's a shorthand for builtin literal types:
