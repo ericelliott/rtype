@@ -47,7 +47,7 @@ I want the best of all worlds:
 * A runtime accessible type system (even in production) with optional runtime type checks (like React.PropTypes -- only in development mode).
 * An easy way to generate interface documentation like JSDoc.
 * An intuitive way to describe interfaces for the purposes of documentation, particularly function signatures.
-* A great way to specify types [in standard ES2015+ code](https://github.com/ericelliott/rfx#rfx) for live interactive development.
+* [A great way to specify types in standard ES2015+ code](https://github.com/ericelliott/rfx#rfx) for live interactive development.
 
 TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn type checking on and off. AFAIK, that's not possible with TypeScript.
 
