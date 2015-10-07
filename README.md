@@ -107,10 +107,10 @@ The special type `any` means that any type is allowed:
 
 ### Union Types
 
-Union types are denoted with the OR operator, `||`:
+Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: string || number): string || number;
+(userInput: string | number): string | number;
 ```
 
 ### Builtin Types
