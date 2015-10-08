@@ -171,7 +171,7 @@ There's a shorthand for builtin literal types:
 ```js
 interface user {
   name: /\w+/,
-  description?: ''
+  description?: '',
   likes?: [],
   data?: {}
 }
