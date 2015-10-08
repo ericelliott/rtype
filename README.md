@@ -116,10 +116,10 @@ Union types are denoted with the pipe symbol, `|`:
 ### Builtin Types
 
 ```js
-boolean, number, string, array, object, func
+boolean, number, string, array, object, Function
 ```
 
-Here, `func` stands in for `function` because `function` is a reserved word.
+Here, `Function` stands in for `function` because using `function` inline with JavaScript would conflict with the `function` keyword. Using lowercase for the rest instead of using the constructor names is a convention adopted from TypeScript.
 
 You can also describe a function's signature using a function `interface`:
 
