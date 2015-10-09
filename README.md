@@ -65,8 +65,8 @@ To make the signature familiar to readers, we use common JavaScript idioms such 
 
 ```js
 ({ count = 0: number }): any
-(...args: string): any
-(firstIndex[]): any
+(...args: string[]): any
+(myArray[]): any
 ```
 
 Optionally, you may name the return value, similar to named parameters:
@@ -101,7 +101,7 @@ number[]
 The special type `any` means that any type is allowed:
 
 ```js
-(...args: any): array
+(...args: any[]): array
 ```
 
 
