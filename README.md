@@ -218,3 +218,4 @@ Somewhat related ideas and inspiration sources.
 * [TypeScript](http://www.typescriptlang.org/)
 * [Flow](http://flowtype.org/)
 * [Typed Objects](http://wiki.ecmascript.org/doku.php?id=harmony:typed_objects)
+* [jsig](https://github.com/jsigbiz/spec)
