@@ -48,8 +48,9 @@ I want the best of all worlds:
 * An easy way to generate interface documentation like JSDoc.
 * An intuitive way to describe interfaces for the purposes of documentation, particularly function signatures.
 * [A great way to specify types in standard ES2015+ code](https://github.com/ericelliott/rfx#rfx) for live interactive development.
+* A JS-native solution so I can use whatever ES-compatible transpiler I want (e.g., Babel)
 
-TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn type checking on and off. AFAIK, that's not possible with TypeScript.
+TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn type checking on and off. AFAIK, that's not possible with TypeScript (yet - there is experimental runtime support using experimental features of the ES7+ `Reflect` API).
 
 
 
