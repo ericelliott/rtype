@@ -111,7 +111,7 @@ The special type `any` means that any type is allowed:
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: string | number): string | number;
+(userInput: string|number): string|number;
 ```
 
 ### Builtin Types
