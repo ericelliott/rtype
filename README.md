@@ -59,26 +59,26 @@ TypeScript is great for compile-time and IDE features, and you could conceivably
 Function types are described by a **function signature**. The function signature tells you each parameter and its type, separated by a colon, and the corresponding return type:
 
 ```js
-(param: type): returnType
+(param: Type): ReturnType
 ```
 
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-({ count = 0: number }): any
-(...args: string[]): any
-(myArray[]): any
+({ count = 0: Number }): Any
+(...args: String[]): Any
+(myArray[]): Any
 ```
 
 Optionally, you may name the return value, similar to named parameters:
 
 ```js
-(param: type): name: type
+(param: Type): name: Type
 ```
 
 e.g.:
 ```js
-connect(options: object): connection: object
+connect(options: Object): connection: Object
 ```
 
 ### Optional Parameters
@@ -86,7 +86,7 @@ connect(options: object): connection: object
 Optional parameters can be indicated with `?`:
 
 ```js
-(param: type, optParam?: type): returnType
+(param: Type, optParam?: Type): ReturnType
 ```
 
 ### Array Types
@@ -94,15 +94,15 @@ Optional parameters can be indicated with `?`:
 Arrays with typed contents can be represented like this:
 
 ```js
-number[]
+Number[]
 ```
 
-### The `any` Type
+### The `Any` Type
 
-The special type `any` means that any type is allowed:
+The special type `Any` means that any type is allowed:
 
 ```js
-(...args: any[]): array
+(...args: Any[]): Array
 ```
 
 
@@ -111,28 +111,28 @@ The special type `any` means that any type is allowed:
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: string|number): string|number;
+(userInput: String|Number): String|Number;
 ```
 
 ### Builtin Types
 
 ```js
-void, boolean, number, string, array, object, Function
+Void, Boolean, Number, String, Array, Object, Function
 ```
 
-Here, `Function` stands in for `function` because using `function` inline with JavaScript would conflict with the `function` keyword. Using lowercase for the rest instead of using the constructor names is a convention adopted from TypeScript.
+Every builtin type except `Void` and `Any` is a name of a JavaScript constructor. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
 
 You can also describe a function's signature using a function `interface`:
 
 ```js
-user({ name: string, avatarUrl?: url }): user
+user({ name: String, avatarUrl?: Url }): User
 ```
 
 You can also use the generic `interface` syntax:
 
 ```js
-interface user {
-  ({ name: string,  avatarUrl?: url }): user
+interface User {
+  ({ name: String,  avatarUrl?: Url }): User
 }
 ```
 
@@ -142,27 +142,27 @@ interface user {
 You can create your own types using `interface`:
 
 ```js
-user, record, avatar, cart
+User, Record, Avatar, Cart
 ```
 
 An interface spells out the structure of the object:
 
 ```js
-interface user {
-  name: string,
-  avatarUrl?: url,
-  about?: string
+interface User {
+  name: String,
+  avatarUrl?: Url,
+  about?: String
 }
 ```
 
 Interfaces support object spread:
 
 ```js
-interface user {
-  name: string,
-  avatarUrl?: url,
-  about?: string,
-  ...properties?: any
+interface User {
+  name: String,
+  avatarUrl?: Url,
+  about?: String,
+  ...properties?: Any
 }
 ```
 
@@ -170,7 +170,7 @@ interface user {
 There's a shorthand for builtin literal types:
 
 ```js
-interface user {
+interface User {
   name: /\w+/,
   description?: '',
   likes?: [],
@@ -181,7 +181,7 @@ interface user {
 And arrow functions:
 
 ```js
-interface stamp (obj) => {
+interface Stamp (obj) => {
   return typeof obj === 'function' &&
     typeof obj.compose === 'function';
 }
@@ -191,7 +191,7 @@ interface stamp (obj) => {
 A one-line interface doesn't need brackets:
 
 ```js
-interface name: /\w+/
+interface Name: /\w+/
 ```
 
 
