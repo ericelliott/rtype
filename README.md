@@ -150,14 +150,22 @@ interface User {
 To indicate that a function can throw an error you can use the `throws` keyword.
 
 ```js
+functionName() => String, throws: TypeError|DOMException
+```
+
+For the generic `Error` type, you can optionally omit the throw type:
+
+```js
 functionName() => String, throws
 ```
 
-You can define the error types as well:
+Is equivalent to:
 
 ```js
-functionName() => String, throws: TypeError|DOMException
+functionName() => String, throws Error
 ```
+
+
 
 ### Interface: User Defined Types
 
