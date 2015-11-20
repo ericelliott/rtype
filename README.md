@@ -85,6 +85,11 @@ e.g.:
 connect(options: Object) => connection: Object
 ```
 
+Furthermore you can omit the name of a parameter if need be:
+```js
+String.isString(Any) => Boolean
+```
+
 ### Optional Parameters
 
 Optional parameters can be indicated with `?`:
