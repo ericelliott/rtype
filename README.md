@@ -59,26 +59,26 @@ TypeScript is great for compile-time and IDE features, and you could conceivably
 Function types are described by a **function signature**. The function signature tells you each parameter and its type, separated by a colon, and the corresponding return type:
 
 ```js
-(param: Type): ReturnType
+(param: Type) => ReturnType
 ```
 
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-({ count = 0: Number }): Any
-(...args: String[]): Any
-(myArray[]): Any
+({ count = 0: Number }) => Any
+(...args: String[]) => Any
+(myArray[]) => Any
 ```
 
 Optionally, you may name the return value, similar to named parameters:
 
 ```js
-(param: Type): name: Type
+(param: Type) => name: Type
 ```
 
 e.g.:
 ```js
-connect(options: Object): connection: Object
+connect(options: Object) => connection: Object
 ```
 
 ### Optional Parameters
@@ -86,7 +86,7 @@ connect(options: Object): connection: Object
 Optional parameters can be indicated with `?`:
 
 ```js
-(param: Type, optParam?: Type): ReturnType
+(param: Type, optParam?: Type) => ReturnType
 ```
 
 ### Array Types
@@ -102,7 +102,7 @@ Number[]
 The special type `Any` means that any type is allowed:
 
 ```js
-(...args: Any[]): Array
+(...args: Any[]) => Array
 ```
 
 
@@ -111,7 +111,7 @@ The special type `Any` means that any type is allowed:
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: String|Number): String|Number;
+(userInput: String|Number) => String|Number;
 ```
 
 ### Builtin Types
@@ -125,14 +125,14 @@ Every builtin type except `Void` and `Any` is a name of a JavaScript constructor
 You can also describe a function's signature using a function `interface`:
 
 ```js
-user({ name: String, avatarUrl?: Url }): User
+user({ name: String, avatarUrl?: Url }) => User
 ```
 
 You can also use the generic `interface` syntax:
 
 ```js
 interface User {
-  ({ name: String,  avatarUrl?: Url }): User
+  ({ name: String,  avatarUrl?: Url }) => User
 }
 ```
 
