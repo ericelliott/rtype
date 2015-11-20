@@ -140,19 +140,18 @@ interface User {
 
 To indicate that a function can throw an error you can use the `throws` keyword or the `!` character.
 
-```
-functionName throws () => String
+```js
+functionName! () => String
 
 // which is equivalent to
-
-functionName! () => String
+functionName throws () => String
 ```
 
-You can define the error and exception types as well:
+You can define the error types as well:
 
-```
+```js
 functionName
-  throws: TypeError | DOMException
+  throws: TypeError|DOMException
   () => String
 ```
 
