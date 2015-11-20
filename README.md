@@ -6,16 +6,16 @@ Intuitive structural type notation for JavaScript.
 >
 > We've had some good times.
 > But it's over. I've moved on.
-> 
+>
 > I've switched to Rtype.
 > Now my interface docs are alive!
-> 
+>
 > ~ Eric
 
 
 ## About Rtype
 
-* Compiler-free type notation. 
+* Compiler-free type notation.
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
 
 ## What is Rtype?
@@ -66,12 +66,29 @@ Function types are described by a **function signature**. The function signature
 (param: Type) => ReturnType
 ```
 
-To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
+You can use the name of any constructor available in the global scope for your types. For example `Boolean`, `Number`, `String`, `TypeError` or `DOMElement` (the latter only in browser code).
+
+To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, rest parameters and arrow functions. Prefer these over the generic `Array`, `Object` and `Function` constructors.
 
 ```js
-({ count = 0: Number }) => Any
-(...args: String[]) => Any
-(myArray[]) => Any
+// Bad:
+(Object) => String
+
+// Bad:
+(onError: Function) => Void
+
+// Good:
+({
+  count = 0: Number
+}) => String
+
+// Good:
+(
+  onError: (error: TypeError) => Void
+) => Void
+
+// Good:
+(...args: String[]) => Number
 ```
 
 Optionally, you may name the return value, similar to named parameters:
@@ -109,6 +126,13 @@ The special type `Any` means that any type is allowed:
 (...args: Any[]) => Array
 ```
 
+### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function doesn’t return any value.
+
+```js
+element.setAttribute(name: String, value: String) => Void
+```
 
 ### Union Types
 
@@ -116,28 +140,6 @@ Union types are denoted with the pipe symbol, `|`:
 
 ```js
 (userInput: String|Number) => String|Number;
-```
-
-### Builtin Types
-
-```js
-Void, Boolean, Number, String, Array, Object, Function
-```
-
-Every builtin type except `Void` and `Any` is a name of a JavaScript constructor. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
-
-You can also describe a function's signature using a function `interface`:
-
-```js
-user({ name: String, avatarUrl?: Url }) => User
-```
-
-You can also use the generic `interface` syntax:
-
-```js
-interface User {
-  ({ name: String,  avatarUrl?: Url }) => User
-}
 ```
 
 ### Throwing functions
