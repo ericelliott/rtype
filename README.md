@@ -29,6 +29,10 @@ Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/
 
 Breaking changes expected.
 
+In the future, the `rtype` library will parse rtype strings and return a predicate function for type checking.
+
+If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
+
 
 ## Why?
 
@@ -212,23 +216,6 @@ A one-line interface doesn't need brackets:
 interface Name: /\w+/
 ```
 
-
-## Future
-
-[Looking into the future](docs/future.md), all of this could eventually be specified inline in ES6 with no compile step:
-
-```js
-import rtype from 'rtype';
-
-const isStamp = (obj) => {
-  return typeof obj === 'function' &&
-    typeof obj.compose === 'function';
-};
-
-const stamp = rtype(isStamp);
-
-stamp({}); // false
-```
 
 ## References
 
