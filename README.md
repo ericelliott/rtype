@@ -6,16 +6,16 @@ Intuitive structural type notation for JavaScript.
 >
 > We've had some good times.
 > But it's over. I've moved on.
-> 
+>
 > I've switched to Rtype.
 > Now my interface docs are alive!
-> 
+>
 > ~ Eric
 
 
 ## About Rtype
 
-* Compiler-free type notation. 
+* Compiler-free type notation.
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
 
 ## What is Rtype?
