@@ -114,6 +114,13 @@ The special type `Any` means that any type is allowed:
 (...args: Any[]) => Array
 ```
 
+### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function doesn’t return any value.
+
+```js
+element.setAttribute(name: String, value: String) => Void
+```
 
 ### Union Types
 
