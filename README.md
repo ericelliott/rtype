@@ -68,12 +68,27 @@ Function types are described by a **function signature**. The function signature
 
 You can use the name of any constructor available in the global scope for your types. For example `Boolean`, `Number`, `String`, `TypeError` or `DOMElement` (the latter only in browser code).
 
-To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
+To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, rest parameters and arrow functions. Prefer these over the generic `Array`, `Object` and `Function` constructors.
 
 ```js
-({ count = 0: Number }) => Any
-(...args: String[]) => Any
-(myArray[]) => Any
+// Bad:
+(Object) => String
+
+// Bad:
+(onError: Function) => Void
+
+// Good:
+({
+  count = 0: Number
+}) => String
+
+// Good:
+(
+  onError: (error: TypeError) => Void
+) => Void
+
+// Good:
+(...args: String[]) => Number
 ```
 
 Optionally, you may name the return value, similar to named parameters:
