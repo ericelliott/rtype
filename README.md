@@ -136,6 +136,25 @@ interface User {
 }
 ```
 
+### Throwing functions
+
+To indicate that a function can throw an error you can use the `throws` keyword or the `!` character.
+
+```
+functionName throws () => String
+
+// which is equivalent to
+
+functionName! () => String
+```
+
+You can define the error and exception types as well:
+
+```
+functionName
+  throws: TypeError | DOMException
+  () => String
+```
 
 ### Interface: User Defined Types
 
