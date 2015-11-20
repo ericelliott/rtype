@@ -66,6 +66,8 @@ Function types are described by a **function signature**. The function signature
 (param: Type) => ReturnType
 ```
 
+You can use the name of any constructor available in the global scope for your types. For example `Boolean`, `Number`, `String`, `TypeError` or `DOMElement` (the latter only in browser code).
+
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
@@ -123,28 +125,6 @@ Union types are denoted with the pipe symbol, `|`:
 
 ```js
 (userInput: String|Number) => String|Number;
-```
-
-### Builtin Types
-
-```js
-Void, Boolean, Number, String, Array, Object, Function
-```
-
-Every builtin type except `Void` and `Any` is a name of a JavaScript constructor. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
-
-You can also describe a function's signature using a function `interface`:
-
-```js
-user({ name: String, avatarUrl?: Url }) => User
-```
-
-You can also use the generic `interface` syntax:
-
-```js
-interface User {
-  ({ name: String,  avatarUrl?: Url }) => User
-}
 ```
 
 ### Throwing functions
