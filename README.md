@@ -145,7 +145,7 @@ functionName throws () => String
 
 // which is equivalent to
 
-!functionName() => String
+functionName! () => String
 ```
 
 You can define the error and exception types as well:
