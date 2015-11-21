@@ -85,7 +85,7 @@ e.g.:
 connect(options: Object) => connection: Object
 ```
 
-Furthermore you can omit the name of a parameter if need be:
+You can omit the name of a parameter if need be:
 ```js
 String.isString(Any) => Boolean
 ```
@@ -106,21 +106,6 @@ Arrays with typed contents can be represented like this:
 Number[]
 ```
 
-### The `Any` Type
-
-The special type `Any` means that any type is allowed:
-
-```js
-(...args: Any[]) => Array
-```
-
-### The `Void` Type
-
-The special type `Void` should only be used to indicate that a function doesn’t return any value.
-
-```js
-element.setAttribute(name: String, value: String) => Void
-```
 
 ### Union Types
 
@@ -133,24 +118,27 @@ Union types are denoted with the pipe symbol, `|`:
 ### Builtin Types
 
 ```js
-Void, Boolean, Number, String, Array, Object, Function
+Any, Array, Boolean, Function, Number, Object, String, Void
 ```
 
-Every builtin type except `Void` and `Any` is a name of a JavaScript constructor. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
+Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
 
-You can also describe a function's signature using a function `interface`:
+#### The `Any` Type
+
+The special type `Any` means that any type is allowed:
 
 ```js
-user({ name: String, avatarUrl?: Url }) => User
+(...args: Any[]) => Array
 ```
 
-You can also use the generic `interface` syntax:
+#### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function doesn’t return any value.
 
 ```js
-interface User {
-  ({ name: String,  avatarUrl?: Url }) => User
-}
+element.setAttribute(name: String, value: String) => Void
 ```
+
 
 ### Throwing functions
 
@@ -215,12 +203,26 @@ interface User {
 }
 ```
 
-And arrow functions:
+An interface that is a function can have a function signature:
 
 ```js
-interface Stamp (obj) => {
-  return typeof obj === 'function' &&
-    typeof obj.compose === 'function';
+interface User {
+  ({ name: String,  avatarUrl?: Url }) => User
+}
+```
+
+A regular function signature is shorthand for a function interface:
+
+```js
+user({ name: String, avatarUrl?: Url }) => User
+```
+
+For polymorphic functions, use the `interface` keyword with multiple function signatures:
+
+```js
+interface Collection {
+  (items: Array[]) => Array[],
+  (items: Object[]) => Object[]
 }
 ```
 
