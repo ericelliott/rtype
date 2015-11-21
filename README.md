@@ -6,16 +6,16 @@ Intuitive structural type notation for JavaScript.
 >
 > We've had some good times.
 > But it's over. I've moved on.
-> 
+>
 > I've switched to Rtype.
 > Now my interface docs are alive!
-> 
+>
 > ~ Eric
 
 
 ## About Rtype
 
-* Compiler-free type notation. 
+* Compiler-free type notation.
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
 
 ## What is Rtype?
@@ -131,25 +131,36 @@ The special type `Any` means that any type is allowed:
 (...args: Any[]) => Array
 ```
 
+#### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function doesn’t return any value.
+
+```js
+element.setAttribute(name: String, value: String) => Void
+```
+
 
 ### Throwing functions
 
-To indicate that a function can throw an error you can use the `throws` keyword or the `!` character.
+To indicate that a function can throw an error you can use the `throws` keyword.
 
 ```js
-functionName! () => String
-
-// which is equivalent to
-functionName throws () => String
+functionName() => String, throws: TypeError|DOMException
 ```
 
-You can define the error types as well:
+For the generic `Error` type, you can optionally omit the throw type:
 
 ```js
-functionName
-  throws: TypeError|DOMException
-  () => String
+functionName() => String, throws
 ```
+
+Is equivalent to:
+
+```js
+functionName() => String, throws Error
+```
+
+
 
 ### Interface: User Defined Types
 
