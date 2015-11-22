@@ -226,6 +226,20 @@ interface Collection {
 }
 ```
 
+Note that named function signatures in an interface block indicate methods, rather than additional function signatures:
+
+```js
+interface Collection {
+  (signatureParam: Any) => Any, // Collection() signature
+  method1(items: Array[]) => Array[], // method
+  method2(items: Object[]) => Object[] // method
+}
+
+// in JS:
+// typeof Collection === 'function'
+// typeof Collection.method1 === 'function'
+// typeof Collection.method2 === 'function'
+```
 
 A one-line interface doesn't need brackets:
 
