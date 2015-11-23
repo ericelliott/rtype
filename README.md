@@ -112,7 +112,7 @@ Number[]
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: String|Number) => String|Number;
+(userInput: String|Number) => String|Number
 ```
 
 ### Builtin Types
