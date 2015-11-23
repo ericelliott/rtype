@@ -6,9 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "test": "babel-node test/index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ericelliott/rtype.git"
