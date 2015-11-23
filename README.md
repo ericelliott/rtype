@@ -157,7 +157,7 @@ functionName() => String, throws
 Is equivalent to:
 
 ```js
-functionName() => String, throws Error
+functionName() => String, throws: Error
 ```
 
 
