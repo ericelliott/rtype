@@ -69,9 +69,21 @@ Function types are described by a **function signature**. The function signature
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-({ count = 0: Number }) => Any
 (...args: String[]) => Any
 (myArray[]) => Any
+({ count = 0: Number }) => Any
+```
+
+If a parameter has a default value, most built-in types can be inferred:
+
+```js
+({ count = 0 }) => Any
+```
+
+Still, if the type is an [union](#union-types) or `Any`, it has to be specified:
+
+```js
+({ collection = []: Array | Object }) => Any
 ```
 
 Optionally, you may name the return value, similar to named parameters:
