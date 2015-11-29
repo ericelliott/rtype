@@ -207,7 +207,7 @@ interface User {
   name: String,
   avatarUrl?: Url,
   about?: String,
-  ...properties?: Any
+  ...properties? // type Object is inferred
 }
 ```
 
