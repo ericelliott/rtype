@@ -80,7 +80,7 @@ If a parameter has a default value, most built-in types can be inferred:
 ({ count = 0 }) => Any
 ```
 
-Still, if the type is an [union](#union-types) or `Any`, it has to be specified:
+Still, if the type is an [union](#union-types) or [`Any`](#the-any-type), it has to be specified:
 
 ```js
 ({ collection = []: Array | Object }) => Any
@@ -127,6 +127,14 @@ Union types are denoted with the pipe symbol, `|`:
 (userInput: String|Number) => String|Number
 ```
 
+### Literal Types
+
+Literals are also accepted as types.
+
+```js
+functionName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
+```
+
 ### Builtin Types
 
 ```js
@@ -148,7 +156,7 @@ The special type `Any` means that any type is allowed:
 The special type `Void` should only be used to indicate that a function doesn’t return any value.
 
 ```js
-element.setAttribute(name: String, value: String) => Void
+setAttribute(name: String, value: String) => Void
 ```
 
 
