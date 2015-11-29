@@ -182,7 +182,7 @@ functionName() => String, throws: Error
 
 
 
-### Interface: User Defined Types
+## Interface: User Defined Types
 
 You can create your own types using `interface`:
 
