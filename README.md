@@ -70,7 +70,7 @@ To make the signature familiar to readers, we use common JavaScript idioms such 
 
 ```js
 (...args: String[]) => Any
-(myArray[]) => Any
+(myArray: []) => Any
 ({ count = 0: Number }) => Any
 ```
 
