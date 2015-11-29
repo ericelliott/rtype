@@ -267,6 +267,18 @@ A one-line interface doesn't need brackets:
 interface Name: /\w+/
 ```
 
+## Comments
+
+Standard JS comment syntax applies, e.g.:
+
+```js
+// A single-line comment, can appear at the end of a line.
+
+/*
+  A multi-line comment.
+  Can span many lines.
+*/
+```
 
 ## References
 
