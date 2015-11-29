@@ -132,7 +132,7 @@ Union types are denoted with the pipe symbol, `|`:
 Literals are also accepted as types.
 
 ```js
-functionName(param: 'typeA' | 'typeB' | 'typeC') => -1 | 0 | 1
+functionName(param1: String, param2: 'typeA' | 'typeB' | 'typeC') => -1 | 0 | 1
 ```
 
 ### Builtin Types
