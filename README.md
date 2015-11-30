@@ -190,7 +190,7 @@ You can create your own types using `interface`:
 User, Record, Avatar, Cart
 ```
 
-An interface spells out the structure of the object:
+An interface can spell out the structure of the object:
 
 ```js
 interface User {
@@ -200,36 +200,6 @@ interface User {
 }
 ```
 
-Interfaces support object spread:
-
-```js
-interface User {
-  name: String,
-  avatarUrl?: Url,
-  about?: String,
-  ...properties? // type Object is inferred
-}
-```
-
-
-There's a shorthand for builtin literal types:
-
-```js
-interface User {
-  name: /\w+/,
-  description?: '',
-  likes?: [],
-  data?: {}
-}
-```
-
-An interface that is a function can have a function signature:
-
-```js
-interface User {
-  ({ name: String,  avatarUrl?: Url }) => User
-}
-```
 
 A regular function signature is shorthand for a function interface:
 
@@ -237,7 +207,15 @@ A regular function signature is shorthand for a function interface:
 user({ name: String, avatarUrl?: Url }) => User
 ```
 
-For polymorphic functions, use the `interface` keyword with multiple function signatures:
+An function interface must have a function signature:
+
+```js
+interface User {
+  ({ name: String,  avatarUrl?: Url }) => User
+}
+```
+
+For polymorphic functions, use multiple function signatures:
 
 ```js
 interface Collection {
@@ -261,10 +239,50 @@ interface Collection {
 // typeof Collection.method2 === 'function'
 ```
 
+
+Interfaces support object spread:
+
+```js
+interface User {
+  name: String,
+  avatarUrl?: Url,
+  about?: String,
+  ...properties? // type Object is inferred
+}
+```
+
+
+Interfaces support builtin literal types:
+
+```js
+interface User {
+  name: /\w+/,
+  description?: '',
+  likes?: [],
+  data?: {}
+}
+```
+
 A one-line interface doesn't need brackets:
 
 ```js
 interface Name: /\w+/
+```
+
+
+Interfaces may use predicate literals:
+
+```js
+interface Integer (number) => number === parseInt(number, 10)
+```
+
+You can combine predicate literals with interface blocks:
+
+```js
+interface EnhancedInteger (number) => number === parseInt(number, 10) {
+  isDivisibleBy3() => Boolean,
+  double() => Number
+}
 ```
 
 ## Comments
