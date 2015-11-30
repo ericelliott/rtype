@@ -276,14 +276,26 @@ Interfaces may use predicate literals:
 interface Integer (number) => number === parseInt(number, 10)
 ```
 
-You can combine predicate literals with interface blocks:
+You can combine predicate literals with interface blocks. Separate function blocks from interface blocks with a semicolon to disambiguate:
 
 ```js
-interface EnhancedInteger (number) => number === parseInt(number, 10) {
+interface EnhancedInteger (number) => number === parseInt(number, 10); {
   isDivisibleBy3() => Boolean,
   double() => Number
 }
 ```
+
+Multi-line example:
+
+```js
+interface EnhancedInteger (number) => {
+  return number === parseInt(number, 10);
+}; {
+  isDivisibleBy3() => Boolean,
+  double() => Number
+}
+```
+
 
 ## Comments
 
