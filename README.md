@@ -16,7 +16,7 @@ Intuitive structural type notation for JavaScript.
 (param: Type) => ReturnType
 ```
 
-This repository is for the notation and parser.
+This repository is for the notation documentation and parser.
 
 If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
 
