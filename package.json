@@ -7,7 +7,7 @@
     "lint": "eslint test source",
     "clean": "rimraf build && mkdir build",
     "prebuild": "npm run clean",
-    "build": "babel -o build/index.js source/index.js -s",
+    "build": "babel -d build source -s",
     "test": "babel-node test/index.js",
     "check": "npm run -s lint && npm -s test && npm -s run build",
     "watch": "watch 'clear && npm run -s lint && npm -s test' source test"
@@ -45,5 +45,8 @@
     "presets": [
       "es2015"
     ]
+  },
+  "dependencies": {
+    "is": "3.1.0"
   }
 }
