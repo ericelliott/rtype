@@ -153,7 +153,7 @@ The special type `Any` means that any type is allowed:
 
 #### The `Void` Type
 
-The special type `Void` should only be used to indicate that a function doesn’t return any value.
+The special type `Void` should only be used to indicate that a function doesn’t return any value or returns `undefined`.
 
 ```js
 setAttribute(name: String, value: String) => Void
@@ -180,6 +180,20 @@ Is equivalent to:
 functionName() => String, throws: Error
 ```
 
+
+### Dependencies
+
+If necessary you can list the non built-in functions required, which is especially useful if you are using polyfills.
+
+```js
+// one dependency
+functionA() => Type, requires: functionB
+
+// several dependencies
+functionA()
+  => Type,
+  requires: [functionB, functionC]
+```
 
 
 ## Interface: User Defined Types
