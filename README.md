@@ -2,10 +2,6 @@
 
 Intuitive structural type notation for JavaScript.
 
-```js
-(param: Type) => ReturnType
-```
-
 > Dear JSDoc,
 >
 > We've had some good times.
@@ -15,6 +11,14 @@ Intuitive structural type notation for JavaScript.
 > Now my interface docs are alive!
 >
 > ~ Eric
+
+```js
+(param: Type) => ReturnType
+```
+
+This repository is for the notation and parser.
+
+If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
 
 
 ## About Rtype
@@ -34,8 +38,6 @@ Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/
 Breaking changes expected.
 
 In the future, the `rtype` library will parse rtype strings and return a predicate function for type checking.
-
-If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
 
 
 ## Why?
