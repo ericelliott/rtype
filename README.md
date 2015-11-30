@@ -2,6 +2,12 @@
 
 Intuitive structural type notation for JavaScript.
 
+Designed to be intuitive to anybody who knows JavaScript:
+
+```js
+(param: Type) => ReturnType
+```
+
 > Dear JSDoc,
 >
 > We've had some good times.
