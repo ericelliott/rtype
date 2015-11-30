@@ -1,0 +1,1 @@
+{"version":3,"sources":["../source/index.js"],"names":[],"mappings":";;;;;AAAA,IAAM,KAAK,GAAG,SAAR,KAAK,GAAS,EAAE,CAAC;;kBAER,KAAK","file":"index.js","sourcesContent":["const rtype = () => {};\n\nexport default rtype;\n"]}

@@ -2,7 +2,16 @@
   "name": "rtype",
   "version": "1.0.0",
   "description": "Intuitive type notation for JavaScript.",
-  "main": "index.js",
+  "main": "build/index.js",
+  "scripts": {
+    "lint": "eslint test source",
+    "clean": "rimraf build && mkdir build",
+    "prebuild": "npm run clean",
+    "build": "babel -o build/index.js source/index.js -s",
+    "test": "babel-node test/index.js",
+    "check": "npm run -s lint && npm -s test && npm -s run build",
+    "watch": "watch 'clear && npm run -s lint && npm -s test' source test"
+  },
   "directories": {
     "doc": "docs"
   },
@@ -22,5 +31,19 @@
   "bugs": {
     "url": "https://github.com/ericelliott/rtype/issues"
   },
-  "homepage": "https://github.com/ericelliott/rtype#readme"
+  "homepage": "https://github.com/ericelliott/rtype#readme",
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-eslint": "^5.0.0-beta4",
+    "babel-preset-es2015": "^6.1.18",
+    "eslint": "^1.10.2",
+    "rimraf": "^2.4.4",
+    "tape": "^4.2.2",
+    "watch": "^0.16.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
 }
