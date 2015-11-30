@@ -2,7 +2,7 @@
 
 **function signature** =
   [ **identifier** ] , "(" , [ **parameter list** ] ,  ")" ,
-  "=>", [ **identifier** , ":" ] , **type** ,
+  "=>", [ **identifier** , [ "?" ] ":" ] , **type** ,
   [ "requires" , ":" , **value expressions** ] ,
   [ "throws" , [ ":" , **identifier** ] ] ;
 
