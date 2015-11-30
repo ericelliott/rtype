@@ -138,7 +138,7 @@ functionName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 |
 ### Builtin Types
 
 ```js
-Any, Array, Boolean, Function, Number, Object, String, Void
+Any, Array, Boolean, Function, Number, Object, String, Void, Predicate
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
@@ -159,6 +159,13 @@ The special type `Void` should only be used to indicate that a function returns 
 setAttribute(name: String, value: String) => Void
 ```
 
+#### The `Predicate` Type
+
+The special type `Predicate` is a function with the following signature:
+
+```js
+(...args: Any[]) => Boolean
+```
 
 ### Throwing functions
 
