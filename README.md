@@ -270,13 +270,13 @@ interface Name: /\w+/
 ```
 
 
-Interfaces may use predicate literals:
+Interfaces may use predicate literals, terminated by a semicolon:
 
 ```js
-interface Integer (number) => number === parseInt(number, 10)
+interface Integer (number) => number === parseInt(number, 10);
 ```
 
-You can combine predicate literals with interface blocks. Separate function blocks from interface blocks with a semicolon to disambiguate:
+You can combine predicate literals with interface blocks. Semicolon disambiguates:
 
 ```js
 interface EnhancedInteger (number) => number === parseInt(number, 10); {
