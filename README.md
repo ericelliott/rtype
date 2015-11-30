@@ -190,7 +190,7 @@ functionName() => String, throws: Error
 
 ### Dependencies
 
-You can optionally list your functions' dependencies. In the future, add-on tools may automatically scan your functions and list dependencies for you, which could be useful for documentation and to identify polyfills requirements.
+You can optionally list your functions' dependencies. In the future, add-on tools may automatically scan your functions and list dependencies for you, which could be useful for documentation and to identify polyfill requirements.
 
 ```js
 // one dependency
