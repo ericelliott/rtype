@@ -153,7 +153,7 @@ The special type `Any` means that any type is allowed:
 
 #### The `Void` Type
 
-The special type `Void` should only be used to indicate that a function returns nothing (`undefined`).
+The special type `Void` should only be used to indicate that a function returns nothing (i.e., `undefined`).
 
 ```js
 setAttribute(name: String, value: String) => Void
