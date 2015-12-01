@@ -204,8 +204,8 @@ functionA() => Type, requires: functionB
 
 // several dependencies
 functionA()
-  => Type,
-  requires: functionB, functionC
+  requires: functionB, functionC,
+  => Type
 ```
 
 
