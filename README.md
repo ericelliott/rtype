@@ -337,6 +337,17 @@ Standard JS comment syntax applies, e.g.:
 */
 ```
 
+## Long-form variant
+
+For consistency with `throws` and `requires`, the `returns` keyword can be used in place of `=>`:
+
+```js
+functionA()
+  returns: String,
+  throws: Error,
+  requires: functionB
+```
+
 ## References
 
 Somewhat related ideas and inspiration sources.
