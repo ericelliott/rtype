@@ -5,14 +5,14 @@
 
 **interface** =
   "interface" , **identifier** ,
-  ( [ **predicate literal** ] , "{" , **interface property list** , "}" )
-  | ( **predicate literal** , [ "{" , **interface property list** , "}" ] ) ;
+  ( [ **predicate literal** ] , "{" , **object property list** , "}" )
+  | ( **predicate literal** , [ "{" , **object property list** , "}" ] ) ;
   (\* interface has one or both but never neither \*)
 
-**interface property list** =
-  **interface property** , { "," , **interface property** } ;
+**object property list** =
+  **object property** , { "," , **object property** } ;
 
-**interface property** = **parameter**
+**object property** = **parameter**
                        | **object spread property** ;
 
 **object spread property** = "..." , **identifier** , "?" ;
@@ -33,7 +33,8 @@
 
 **parameter** = **type**
               | **named parameter**
-              | **spread parameter** ;
+              | **spread parameter**
+              | **destructured object** ;
 
 **named parameter** =
   **identifier** ,
@@ -44,6 +45,8 @@
 **default value** = "=" , **literal type** ;
 
 **spread parameter** = "..." , **identifier** , ":" , **array type** ;
+
+**destructured object** = "{" , **object property list** , "}" ;
 
 **type** = **array type**
          | **non-array type**
