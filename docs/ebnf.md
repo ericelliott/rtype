@@ -1,35 +1,57 @@
 # [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form)
 
+
+## Entry Points
+
 **minimal interface** = "interface" , **identifier** ,
   ( ":" , **type** ) | **predicate literal**;
 
 **interface** =
   "interface" , **identifier** ,
-  ( [ **predicate literal** ] , "{" , **object property list** , "}" )
-  | ( **predicate literal** , [ "{" , **object property list** , "}" ] ) ;
+  ( [ **predicate literal** ] , "{" , **object properties** , "}" )
+  | ( **predicate literal** , [ "{" , **object properties** , "}" ] ) ;
   (\* interface has one or both but never neither \*)
 
-**object property list** =
+**function interface** =
+  "interface" , **identifier** , "{" , **function signatures** , "}" ;
+
+**function signature** =
+  [ **identifier** ] , "(" , [ **parameters** ] ,  ")" ,
+  "=>", [ **identifier** , [ "?" ] ":" ] , **type** ,
+  [ "requires" , ":" , **value expressions** ] ,
+  [ "throws" , [ ":" , **identifier** ] ] ;
+
+
+## Non-Terminal Production Rules
+
+
+### Repeaters (length >= 1)
+
+**object properties** =
   **object property** , { "," , **object property** } ;
+
+**function signatures** =
+  **function signature** , { "," , **function signature** } ;
+
+**parameters** = **parameter** , { "," , **parameter** } ;
+
+**identifier** =
+  ( **identifier character** , { **identifier character** } ) - **reserved word** ;
+
+**value expressions** = **value expression** , { "," , **value expression** } ;
+
+
+### Objects
+
+**destructured object** = "{" , **object properties** , "}" ;
 
 **object property** = **parameter**
                        | **object spread property** ;
 
 **object spread property** = "..." , **identifier** , "?" ;
 
-**function interface** =
-  "interface" , **identifier** , "{" , **function signatures** , "}" ;
 
-**function signatures** =
-  **function signature** , { "," , **function signature** } ;
-
-**function signature** =
-  [ **identifier** ] , "(" , [ **parameter list** ] ,  ")" ,
-  "=>", [ **identifier** , [ "?" ] ":" ] , **type** ,
-  [ "requires" , ":" , **value expressions** ] ,
-  [ "throws" , [ ":" , **identifier** ] ] ;
-
-**parameter list** = **parameter** , { "," , **parameter** } ;
+### Parameters
 
 **parameter** = **type**
               | **named parameter**
@@ -46,7 +68,9 @@
 
 **spread parameter** = "..." , **identifier** , ":" , **array type** ;
 
-**destructured object** = "{" , **object property list** , "}" ;
+
+
+### Types
 
 **type** = **array type**
          | **non-array type**
@@ -60,10 +84,8 @@
                    | **builtin type**
                    | **literal type** ;
 
-**identifier** =
-  ( **identifier character** , { **identifier character** } ) - **reserved word** ;
 
-**value expressions** = **value expression** , { "," , **value expression** } ;
+## Terminal Production Rules and JavaScript
 
 **literal type** = ? set of JavaScript-legal literal values ? | **regexp literal**;
 
