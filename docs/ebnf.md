@@ -31,7 +31,17 @@
 
 **parameter list** = **parameter** , { "," , **parameter** } ;
 
-**parameter** = ( [ **identifier** , ":" ] , **type** ) | **spread parameter** ;
+**parameter** = **type**
+              | **named parameter**
+              | **spread parameter** ;
+
+**named parameter** =
+  **identifier** ,
+  ( [ **default value** ] ":" , **type** )
+  | ( **default value** ":" , [ **type** ] );
+  (\* named parameter has one or both but never neither \*)
+
+**default value** = "=" , **literal type** ;
 
 **spread parameter** = "..." , **identifier** , ":" , **array type** ;
 
