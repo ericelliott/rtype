@@ -4,7 +4,7 @@
 ## Entry Points
 
 **minimal interface** = "interface" , **identifier** ,
-  ( ":" , **type** ) | **predicate literal**;
+  ( ":" , **type** ) | **predicate literal** ;
 
 **interface** =
   "interface" , **identifier** ,
@@ -17,9 +17,8 @@
 
 **function signature** =
   [ **identifier** ] , "(" , [ **parameters** ] ,  ")" ,
-  "=>", [ **identifier** , [ "?" ] ":" ] , **type** ,
-  [ "requires" , ":" , **value expressions** ] ,
-  [ "throws" , [ ":" , **identifier** ] ] ;
+  { [ "," ] , **function trailer** } ;
+  (\* parser should confirm semantics, allow 1 of each function trailer \*)
 
 
 ## Non-Terminal Production Rules
@@ -68,6 +67,9 @@
 
 **spread parameter** = "..." , **identifier** , ":" , **array type** ;
 
+**function trailer** = ( "=>", [ **identifier** , [ "?" ] ":" ] , **type** )
+                     | ( "requires" , ":" , **value expressions** )
+                     | ( "throws" , [ ":" , **identifier** ] ) ;
 
 
 ### Types
