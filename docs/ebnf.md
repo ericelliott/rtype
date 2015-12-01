@@ -1,13 +1,21 @@
 # [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form)
 
-**interface** =
-  "interface" , **identifier** ,
-  ( [ **predicate literal** ] , "{" , **parameter list** , "}" )
-  | ( **predicate literal** , [ "{" , **parameter list** , "}" ] ) ;
-  (\* interface has at least one of predicate literal or parameter list \*)
-
 **minimal interface** = "interface" , **identifier** ,
   ( ":" , **type** ) | **predicate literal**;
+
+**interface** =
+  "interface" , **identifier** ,
+  ( [ **predicate literal** ] , "{" , **interface property list** , "}" )
+  | ( **predicate literal** , [ "{" , **interface property list** , "}" ] ) ;
+  (\* interface has one or both but never neither \*)
+
+**interface property list** =
+  **interface property** , { "," , **interface property** } ;
+
+**interface property** = **parameter**
+                       | **object spread property** ;
+
+**object spread property** = "..." , **identifier** , "?" ;
 
 **function interface** =
   "interface" , **identifier** , "{" , **function signatures** , "}" ;
