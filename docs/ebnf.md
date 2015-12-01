@@ -17,6 +17,7 @@
 
 **function signature** =
   [ **identifier** ] , "(" , [ **parameters** ] ,  ")" ,
+  "=>", [ **identifier** , [ "?" ] ":" ] , **type** ,
   { [ "," ] , **function trailer** } ;
   (\* parser should confirm semantics, allow 1 of each function trailer \*)
 
@@ -67,8 +68,7 @@
 
 **spread parameter** = "..." , **identifier** , ":" , **array type** ;
 
-**function trailer** = ( "=>", [ **identifier** , [ "?" ] ":" ] , **type** )
-                     | ( "requires" , ":" , **value expressions** )
+**function trailer** = ( "requires" , ":" , **value expressions** )
                      | ( "throws" , [ ":" , **identifier** ] ) ;
 
 
