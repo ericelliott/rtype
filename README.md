@@ -23,7 +23,9 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 
 ## About Rtype
 
-* Compiler-free type notation.
+* Great for simple documentation.
+* Compiler-free type notation - for use with ECMAScript standard tools.
+* Should embed in JS as strings, not comments. Affords easy runtime reflection.
 * Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
 
 ## What is Rtype?
