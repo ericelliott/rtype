@@ -234,7 +234,7 @@ A regular function signature is shorthand for a function interface:
 user({ name: String, avatarUrl?: Url }) => User
 ```
 
-An function interface must have a function signature:
+A function interface must have a function signature:
 
 ```js
 interface User {
