@@ -100,14 +100,16 @@ Optionally, you may name the return value, similar to named parameters:
 (param: Type) => name: Type
 ```
 
-e.g.:
+Or even name a signature to reuse it later on:
+
 ```js
 connect(options: Object) => connection: Object
 ```
 
-You can omit the name of a parameter if need be:
+You can also omit the name of a parameter if need be:
+
 ```js
-String.isString(Any) => Boolean
+is(Any) => Boolean
 ```
 
 ### Optional Parameters
@@ -140,7 +142,7 @@ Union types are denoted with the pipe symbol, `|`:
 Literals are also accepted as types.
 
 ```js
-functionName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
+signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
 ```
 
 ### Builtin Types
@@ -164,7 +166,7 @@ The special type `Any` means that any type is allowed:
 The special type `Void` should only be used to indicate that a function returns nothing (i.e., `undefined`).
 
 ```js
-setAttribute(name: String, value: String) => Void
+set(name: String, value: String) => Void
 ```
 
 #### The `Predicate` Type
@@ -180,19 +182,19 @@ The special type `Predicate` is a function with the following signature:
 To indicate that a function can throw an error you can use the `throws` keyword.
 
 ```js
-functionName() => String, throws: TypeError|DOMException
+(paramName: Type) => Type, throws: TypeError|DOMException
 ```
 
 For the generic `Error` type, you can optionally omit the throw type:
 
 ```js
-functionName() => String, throws
+(paramName: Type) => Type, throws
 ```
 
 Is equivalent to:
 
 ```js
-functionName() => String, throws: Error
+(paramName: Type) => Type, throws: Error
 ```
 
 
@@ -202,12 +204,12 @@ You can optionally list your functions' dependencies. In the future, add-on tool
 
 ```js
 // one dependency
-functionA() => Type, requires: functionB
+signatureName() => Type, requires: functionA
 
 // several dependencies
-functionA()
+signatureName()
   => Type,
-  requires: functionB, functionC
+  requires: functionA, functionB
 ```
 
 
