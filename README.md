@@ -21,6 +21,33 @@ This repository is for the notation documentation and parser.
 If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
 
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [About Rtype](#about-rtype)
+- [What is Rtype?](#what-is-rtype)
+- [Status: RFC](#status-rfc)
+- [Why?](#why)
+- [Why Not Just Use TypeScript?](#why-not-just-use-typescript)
+- [Reading Function Signatures](#reading-function-signatures)
+  - [Optional Parameters](#optional-parameters)
+  - [Array Types](#array-types)
+  - [Union Types](#union-types)
+  - [Literal Types](#literal-types)
+  - [Builtin Types](#builtin-types)
+    - [The `Any` Type](#the-any-type)
+    - [The `Void` Type](#the-void-type)
+    - [The `Predicate` Type](#the-predicate-type)
+  - [Throwing functions](#throwing-functions)
+  - [Dependencies](#dependencies)
+- [Interface: User Defined Types](#interface-user-defined-types)
+- [Comments](#comments)
+- [References](#references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## About Rtype
 
 * Great for simple documentation.
