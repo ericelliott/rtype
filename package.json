@@ -37,7 +37,7 @@
     "babel-cli": "^6.2.0",
     "babel-eslint": "^5.0.0-beta4",
     "babel-preset-es2015": "^6.1.18",
-    "doctoc": "^0.15.0",
+    "doctoc": "0.15.0",
     "eslint": "^1.10.2",
     "rimraf": "^2.4.4",
     "tape": "^4.2.2",
