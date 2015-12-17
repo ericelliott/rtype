@@ -32,6 +32,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Why Not Just Use TypeScript?](#why-not-just-use-typescript)
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
+  - [Constructors](#constructors)
   - [Array Types](#array-types)
   - [Union Types](#union-types)
   - [Literal Types](#literal-types)
@@ -145,6 +146,23 @@ Optional parameters can be indicated with `?`:
 
 ```js
 (param: Type, optParam?: Type) => ReturnType
+```
+
+### Constructors
+
+Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
+
+```js
+new User({ username: String }) => UserInstance
+```
+
+In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
+
+```js
+interface UserInstance {
+  username: String,
+  credentials: String
+}
 ```
 
 ### Array Types
