@@ -260,7 +260,7 @@ signatureName()
 
 ## Interface: User Defined Types
 
-You can create your own types using `interface`:
+You can create your own types using `interface`; since a parameter can be nameless and parameters are always camelcased, all interfaces must be capitalized:
 
 ```js
 User, Record, Avatar, Cart
