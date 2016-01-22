@@ -316,18 +316,6 @@ interface Collection {
 ```
 
 
-Interfaces support object spread:
-
-```js
-interface User {
-  name: String,
-  avatarUrl?: Url,
-  about?: String,
-  ...properties? // type Object is inferred
-}
-```
-
-
 Interfaces support builtin literal types:
 
 ```js
@@ -369,6 +357,63 @@ interface EnhancedInteger (number) => {
 }; {
   isDivisibleBy3() => Boolean,
   double() => Number
+}
+```
+
+
+## Composing types
+
+Whenever you want to compose an interface out of several others, use the spread operator for that:
+
+```js
+interface Person {
+  name: Name,
+  birthDate: Number,
+}
+
+interface User {
+  username: String,
+  description?: String,
+  kudos = 0: Number,
+}
+
+interface HumanUser {
+  ...Person,
+  ...User,
+  avatarUrl: String,
+}
+```
+
+You can also use the spread inside object type literals:
+
+```js
+interface Company {
+  name: Name,
+  owner: { ...Person, shareStake: Number },
+}
+```
+
+In case of a name conflict, both properties must be satisfied. Keep that in mind that many types aren’t compatible with one another – for example, `Number` and `String`:
+
+```js
+interface Creature {
+  name: String,
+  character: String,
+  strength: (number) => (number >= 0 && number <= 100),
+}
+
+// This is OK:
+interface Human {
+  ...Creature,
+  name: /^[A-Z][a-z]+$/,
+  character: 'friendly' | 'grumpy',
+}
+
+// This will never be satisfied:
+interface Animal {
+  ...Human,
+  name: 'dog' | 'cat' | 'frog',
+  strength: 'strong' | 'weak',
 }
 ```
 
