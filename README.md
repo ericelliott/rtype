@@ -43,6 +43,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Throwing functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
+- [Composing types](#composing-types)
 - [Comments](#comments)
 - [References](#references)
 
@@ -412,6 +413,7 @@ interface Human {
 To make sure we can run a static type check for you, we don’t allow merging two different literals. So this would result in a compile error:
 
 ```js
+// Invalid!
 interface Professor {
   ...Human,
   name: /^prof\. \w+$/,
@@ -421,6 +423,7 @@ interface Professor {
 Obviusly, merging incompatible interfaces is also invalid:
 
 ```js
+// Invalid!
 interface Bot {
   ...Creature,
   name: Number,
