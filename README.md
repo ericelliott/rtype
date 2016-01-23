@@ -44,6 +44,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
 - [Comments](#comments)
+- [`interfaces.rtype`](#interfacesrtype)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
