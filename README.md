@@ -393,7 +393,7 @@ interface Company {
 }
 ```
 
-In case of a name conflict, both properties must be satisfied. Keep that in mind that many types aren’t compatible with one another – for example, `Number` and `String`:
+In case of a name conflict, properties with same names are merged. It means all prerequisites must be satisfied. It’s fine to make types more specific through type literals:
 
 ```js
 interface Creature {
@@ -402,18 +402,28 @@ interface Creature {
   strength: (number) => (number >= 0 && number <= 100),
 }
 
-// This is OK:
 interface Human {
   ...Creature,
-  name: /^[A-Z][a-z]+$/,
+  name: /^(.* )?[A-Z][a-z]+$/,
   character: 'friendly' | 'grumpy',
 }
+```
 
-// This will never be satisfied:
-interface Animal {
+To make sure we can run a static type check for you, we don’t allow merging two different literals. So this would result in a compile error:
+
+```js
+interface Professor {
   ...Human,
-  name: 'dog' | 'cat' | 'frog',
-  strength: 'strong' | 'weak',
+  name: /^prof\. \w+$/,
+}
+```
+
+Obviusly, merging incompatible interfaces is also invalid:
+
+```js
+interface Bot {
+  ...Creature,
+  name: Number,
 }
 ```
 
