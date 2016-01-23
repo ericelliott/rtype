@@ -386,6 +386,14 @@ Standard JS comment syntax applies, e.g.:
 */
 ```
 
+
+## `interfaces.rtype`
+
+If you find yourself using the same custom types all over your project, you can keep their definitions in one `interfaces.rtype` file in the root of the project. Don’t forget to set up your editor so that it treats `*.rtype` files as JavaScript.
+
+At the moment you can use this file for documenting your project. But we’re soon rolling out analysis tools for rtype. In the future they will be able to import the file and use your definitions for static type analysis.
+
+
 ## References
 
 Somewhat related ideas and inspiration sources.
