@@ -270,7 +270,7 @@ User, Record, Avatar, Cart
 An interface can spell out the structure of the object:
 
 ```js
-interface User {
+interface UserInstance {
   name: String,
   avatarUrl?: Url,
   about?: String
@@ -320,7 +320,7 @@ interface Collection {
 Interfaces support object spread:
 
 ```js
-interface User {
+interface UserInstance {
   name: String,
   avatarUrl?: Url,
   about?: String,
@@ -332,7 +332,7 @@ interface User {
 Interfaces support builtin literal types:
 
 ```js
-interface User {
+interface UserInstance {
   name: /\w+/,
   description?: '',
   likes?: [],
