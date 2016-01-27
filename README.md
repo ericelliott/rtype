@@ -281,14 +281,14 @@ interface User {
 A regular function signature is shorthand for a function interface:
 
 ```js
-user({ name: String, avatarUrl?: Url }) => User
+user({ name: String, avatarUrl?: Url }) => UserInstance
 ```
 
 A function interface must have a function signature:
 
 ```js
-interface User {
-  ({ name: String,  avatarUrl?: Url }) => User
+interface user {
+  ({ name: String,  avatarUrl?: Url }) => UserInstance
 }
 ```
 
