@@ -146,7 +146,7 @@ Optional parameters can be indicated with `?`:
 
 ### Anonymous Parameters
 
-Parameters' names can be omitted if need be:
+Parameters' names can be omitted:
 
 ```js
 is(Any) => Boolean
