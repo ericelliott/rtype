@@ -32,6 +32,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Why Not Just Use TypeScript?](#why-not-just-use-typescript)
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
+  - [Anonymous Parameters](#anonymous-parameters)
   - [Constructors](#constructors)
   - [Array Types](#array-types)
   - [Union Types](#union-types)
@@ -135,18 +136,26 @@ Or even name a signature to reuse it later on:
 connect(options: Object) => connection: Object
 ```
 
-You can also omit the name of a parameter if need be:
-
-```js
-is(Any) => Boolean
-```
-
 ### Optional Parameters
 
 Optional parameters can be indicated with `?`:
 
 ```js
 (param: Type, optParam?: Type) => ReturnType
+```
+
+### Anonymous Parameters
+
+Parameters' names can be omitted if need be:
+
+```js
+is(Any) => Boolean
+```
+
+In the case of an anonymous [optional parameter](#optional-parameters) the type needs to be prefixed by `?:`:
+
+```js
+toggle(String, ?: Boolean) => Boolean
 ```
 
 ### Constructors
@@ -173,7 +182,6 @@ Arrays with typed contents can be represented like this:
 ```js
 Number[]
 ```
-
 
 ### Union Types
 
