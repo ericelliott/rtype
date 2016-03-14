@@ -44,6 +44,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Throwing functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
+- [Composing types](#composing-types)
 - [Comments](#comments)
 - [`interfaces.rtype`](#interfacesrtype)
 - [References](#references)
@@ -325,18 +326,6 @@ interface Collection {
 ```
 
 
-Interfaces support object spread:
-
-```js
-interface UserInstance {
-  name: String,
-  avatarUrl?: Url,
-  about?: String,
-  ...properties? // type Object is inferred
-}
-```
-
-
 Interfaces support builtin literal types:
 
 ```js
@@ -378,6 +367,75 @@ interface EnhancedInteger (number) => {
 }; {
   isDivisibleBy3() => Boolean,
   double() => Number
+}
+```
+
+
+## Composing types
+
+Whenever you want to compose an interface out of several others, use the spread operator for that:
+
+```js
+interface Person {
+  name: Name,
+  birthDate: Number,
+}
+
+interface User {
+  username: String,
+  description?: String,
+  kudos = 0: Number,
+}
+
+interface HumanUser {
+  ...Person,
+  ...User,
+  avatarUrl: String,
+}
+```
+
+You can also use the spread inside object type literals:
+
+```js
+interface Company {
+  name: Name,
+  owner: { ...Person, shareStake: Number },
+}
+```
+
+In case of a name conflict, properties with same names are merged. It means all prerequisites must be satisfied. It’s fine to make types more specific through type literals:
+
+```js
+interface Creature {
+  name: String,
+  character: String,
+  strength: (number) => (number >= 0 && number <= 100),
+}
+
+interface Human {
+  ...Creature,
+  name: /^(.* )?[A-Z][a-z]+$/,
+  character: 'friendly' | 'grumpy',
+}
+```
+
+To make sure we can run a static type check for you, we don’t allow merging two different literals. So this would result in a compile error:
+
+```js
+// Invalid!
+interface Professor {
+  ...Human,
+  name: /^prof\. \w+$/,
+}
+```
+
+Obviusly, merging incompatible interfaces is also invalid:
+
+```js
+// Invalid!
+interface Bot {
+  ...Creature,
+  name: Number,
 }
 ```
 
