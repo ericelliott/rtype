@@ -45,6 +45,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
 - [Composing types](#composing-types)
+- [Observable Interfaces](#observable-interfaces)
 - [Comments](#comments)
 - [`interfaces.rtype`](#interfacesrtype)
 - [References](#references)
@@ -439,6 +440,19 @@ interface Bot {
 }
 ```
 
+## Observable Interfaces
+
+Interfaces that are expected to emit events can describe those events and the parameters they pass using `emits`. The specific event emitter interface can be specified using [composing types](#composing-types).
+
+```js
+interface UserInstance {
+  ...EventEmitter,
+  name: String
+}, emits: {
+  nameChanged: { newName: String },
+  disconnected: Void
+}
+```
 
 ## Comments
 
