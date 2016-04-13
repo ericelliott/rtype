@@ -33,14 +33,15 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
   - [Anonymous Parameters](#anonymous-parameters)
-  - [Constructors](#constructors)
-  - [Array Types](#array-types)
-  - [Union Types](#union-types)
-  - [Literal Types](#literal-types)
   - [Builtin Types](#builtin-types)
     - [The `Any` Type](#the-any-type)
     - [The `Void` Type](#the-void-type)
     - [The `Predicate` Type](#the-predicate-type)
+    - [The Object Types](#the-object-types)
+  - [Literal Types](#literal-types)
+  - [Array Types](#array-types)
+  - [Union Types](#union-types)
+  - [Constructors](#constructors)
   - [Throwing functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
@@ -159,54 +160,14 @@ In the case of an anonymous [optional parameter](#optional-parameters) the type 
 toggle(String, ?: Boolean) => Boolean
 ```
 
-### Constructors
-
-Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
-
-```js
-new User({ username: String }) => UserInstance
-```
-
-In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
-
-```js
-interface UserInstance {
-  username: String,
-  credentials: String
-}
-```
-
-### Array Types
-
-Arrays with typed contents can be represented like this:
-
-```js
-Number[]
-```
-
-### Union Types
-
-Union types are denoted with the pipe symbol, `|`:
-
-```js
-(userInput: String|Number) => String|Number
-```
-
-### Literal Types
-
-Literals are also accepted as types.
-
-```js
-signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
-```
-
 ### Builtin Types
 
 ```js
-Any, Array, Boolean, Function, Number, Object, String, Void, Predicate
+Any, Array, Boolean, Function, Number, Object, String, Symbol, Void
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
+These are reserved types; hence they can't be overshadowed.
 
 #### The `Any` Type
 
@@ -230,6 +191,60 @@ The special type `Predicate` is a function with the following signature:
 
 ```js
 (...args: Any[]) => Boolean
+```
+
+#### The Object Types
+
+We offer a list of extra object types for convenience:
+- Set
+- Map
+- Date
+- Error
+- Promise
+- RegExp
+- Proxy
+
+Unlike reserved [builtin types](#builtin-types), you can redeclare them.
+
+### Literal Types
+
+Literals are also accepted as types.
+
+```js
+signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
+```
+
+### Array Types
+
+Arrays with typed contents can be represented like this:
+
+```js
+Number[]
+```
+
+### Union Types
+
+Union types are denoted with the pipe symbol, `|`:
+
+```js
+(userInput: String|Number) => String|Number
+```
+
+### Constructors
+
+Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
+
+```js
+new User({ username: String }) => UserInstance
+```
+
+In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
+
+```js
+interface UserInstance {
+  username: String,
+  credentials: String
+}
 ```
 
 ### Throwing functions
