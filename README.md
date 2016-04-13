@@ -167,7 +167,6 @@ Any, Array, Boolean, Function, Number, Object, RegExp, String, Symbol, Void
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
-These are reserved types; hence they can't be overshadowed.
 
 #### The `Any` Type
 
@@ -202,8 +201,6 @@ We offer a list of extra object types for convenience:
 - Error
 - Promise
 - Proxy
-
-Unlike reserved [builtin types](#builtin-types), you can redeclare them.
 
 ### Literal Types
 
