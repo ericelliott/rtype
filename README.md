@@ -163,7 +163,7 @@ toggle(String, ?: Boolean) => Boolean
 ### Builtin Types
 
 ```js
-Any, Array, Boolean, Function, Number, Object, String, Symbol, Void
+Any, Array, Boolean, Function, Number, Object, RegExp, String, Symbol, Void
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
@@ -201,7 +201,6 @@ We offer a list of extra object types for convenience:
 - Date
 - Error
 - Promise
-- RegExp
 - Proxy
 
 Unlike reserved [builtin types](#builtin-types), you can redeclare them.
