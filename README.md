@@ -220,11 +220,18 @@ The special type `Any` means that any type is allowed:
 
 #### The `Void` Type
 
-The special type `Void` should only be used to indicate that a function returns nothing (i.e., `undefined`).
+The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Since `Void` return types imply function side-effects, `Void` return types should usually be explicitly annotated.
 
 ```js
 set(name: String, value: String) => Void
 ```
+
+Is equivalent to:
+
+```js
+set(name: String, value: String)
+```
+
 
 #### The `Predicate` Type
 
