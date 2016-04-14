@@ -1,5 +1,7 @@
 # Rtype
 
+[![Join the chat at https://gitter.im/ericelliott/rtype](https://badges.gitter.im/ericelliott/rtype.svg)](https://gitter.im/ericelliott/rtype?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Intuitive structural type notation for JavaScript.
 
 > Dear JSDoc,
