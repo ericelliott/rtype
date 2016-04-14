@@ -36,8 +36,9 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Builtin Types](#builtin-types)
     - [The `Any` Type](#the-any-type)
     - [The `Void` Type](#the-void-type)
+  - [Builtin Subsets](#builtin-subsets)
+    - [Object Types](#object-types)
     - [The `Predicate` Type](#the-predicate-type)
-    - [The Object Types](#the-object-types)
   - [Literal Types](#literal-types)
   - [Array Types](#array-types)
   - [Union Types](#union-types)
@@ -184,15 +185,9 @@ The special type `Void` should only be used to indicate that a function returns 
 set(name: String, value: String) => Void
 ```
 
-#### The `Predicate` Type
+### Builtin Subsets
 
-The special type `Predicate` is a function with the following signature:
-
-```js
-(...args: Any[]) => Boolean
-```
-
-#### The Object Types
+#### Object Types
 
 We offer a list of extra object types for convenience:
 - Set
@@ -201,6 +196,14 @@ We offer a list of extra object types for convenience:
 - Error
 - Promise
 - Proxy
+
+#### The `Predicate` Type
+
+The special type `Predicate` is a function with the following signature:
+
+```js
+(...args: Any[]) => Boolean
+```
 
 ### Literal Types
 
