@@ -203,7 +203,7 @@ signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 
 ### Builtin Types
 
 ```js
-Any, Array, Boolean, Function, Number, Object, String, Void, Predicate
+Any, Array, Boolean, Function, Number, Object, RegExp, String, Symbol, Void, Predicate
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
