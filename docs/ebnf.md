@@ -33,7 +33,10 @@
 **function signatures** =
   **function signature** , { "," , **function signature** } ;
 
-**parameters** = **parameter** , { "," , **parameter** } ;
+**parameters** = **spread parameter**
+               | **parameter** , { "," , **parameter** } , [ "," , **spread parameter** ]
+
+Note: inspired by [ES2015 FormalParameterList](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-function-definitions)
 
 **identifier** =
   ( **identifier character** , { **identifier character** } ) - **reserved word** ;
@@ -55,7 +58,6 @@
 
 **parameter** = **type**
               | **named parameter**
-              | **spread parameter**
               | **destructured object** ;
 
 **named parameter** =
