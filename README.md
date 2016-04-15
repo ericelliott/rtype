@@ -94,7 +94,7 @@ We want the best of all worlds:
 * A way to specify types in standard ES2015+ code. Use any standard JS compiler. See [rfx](https://github.com/ericelliott/rfx#rfx).
 * An easy way to generate interface documentation (like JSDoc).
 
-TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn runtime type checking on and off. AFAIK, that's not possible with TypeScript (yet - there is experimental runtime support using experimental features of the ES7+ `Reflect` API).
+TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn runtime type checking on and off. AFAIK, that's not possible with TypeScript (yet - there is experimental runtime support using experimental features of the ESNext `Reflect` API).
 
 
 
