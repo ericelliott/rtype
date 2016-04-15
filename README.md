@@ -57,9 +57,9 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 ## About Rtype
 
 * Great for simple documentation.
-* Compiler-free type notation - for use with ECMAScript standard tools.
-* Should embed in JS as strings, not comments. Affords easy runtime reflection.
-* Standing on the shoulders of giants: ES6, TypeScript, Haskell, Flow, & React
+* Compiler-agnostic type notation - for use with ECMAScript standard tools.
+* Can embed in JS as strings, for example with [rfx](https://github.com/ericelliott/rfx). Affords easy runtime reflection.
+* Standing on the shoulders of giants. Inspired by: ES6, TypeScript, Haskell, Flow, & React
 
 ## What is Rtype?
 
@@ -70,32 +70,31 @@ Rtype is a JS-native representation of structural type interfaces with a TypeScr
 
 Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/new).
 
-Breaking changes expected.
+Currently in-use for production library API documentation, but breaking changes are expected.
 
-In the future, the `rtype` library will parse rtype strings and return a predicate function for type checking.
+In the future, the `rtype` library will parse rtype strings and return predicate functions for runtime type checking. Static analysis tools are also a future possibility. If you're interested in helping, [please contact us](https://github.com/ericelliott/rtype/issues/new?title=volunteer+for+tools).
 
 
 ## Why?
 
-Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, but I don't like them, for various reasons.
+Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, but we think we can improve on them:
 
 * JSDoc is too verbose, not intuitive, and painful to maintain.
 * TypeScript's structural types are very appealing, but opting into TypeScript's JS superset and runtime limitations is not.
 
-I want a type representation that is very clear to modern JavaScript developers (ES2015+), that could potentially be used at runtime with simple utilities.
+We want a type representation that is very clear to modern JavaScript developers (ES2015+), that could potentially be used at runtime with simple utilities.
 
 
 ## Why Not Just Use TypeScript?
 
-I want the best of all worlds:
+We want the best of all worlds:
 
-* A runtime accessible type system (even in production) with optional runtime type checks (like React.PropTypes -- only in development mode).
-* An easy way to generate interface documentation like JSDoc.
 * An intuitive way to describe interfaces for the purposes of documentation, particularly function signatures.
-* [A great way to specify types in standard ES2015+ code](https://github.com/ericelliott/rfx#rfx) for live interactive development.
-* A JS-native solution so I can use whatever ES-compatible transpiler I want (e.g., Babel)
+* Runtime accessible type reflection (even in production) with optional runtime type checks that can be disabled in production (like React.PropTypes). See [rfx](https://github.com/ericelliott/rfx#rfx).
+* A way to specify types in standard ES2015+ code. Use any standard JS compiler. See [rfx](https://github.com/ericelliott/rfx#rfx).
+* An easy way to generate interface documentation (like JSDoc).
 
-TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn type checking on and off. AFAIK, that's not possible with TypeScript (yet - there is experimental runtime support using experimental features of the ES7+ `Reflect` API).
+TypeScript is great for compile-time and IDE features, and you could conceivably generate docs with it, but runtime features are lacking. For example, I want the ability to query function signatures inside the program at runtime, along with the ability to turn runtime type checking on and off. AFAIK, that's not possible with TypeScript (yet - there is experimental runtime support using experimental features of the ES7+ `Reflect` API).
 
 
 
