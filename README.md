@@ -33,11 +33,10 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
   - [Anonymous Parameters](#anonymous-parameters)
-  - [Builtin Types](#builtin-types)
+  - [Reserved Types](#reserved-types)
+    - [Builtin Types](#builtin-types)
     - [The `Any` Type](#the-any-type)
     - [The `Void` Type](#the-void-type)
-  - [Builtin Subsets](#builtin-subsets)
-    - [Object Types](#object-types)
     - [The `Predicate` Type](#the-predicate-type)
   - [Literal Types](#literal-types)
   - [Array Types](#array-types)
@@ -161,10 +160,13 @@ In the case of an anonymous [optional parameter](#optional-parameters) the type 
 toggle(String, ?: Boolean) => Boolean
 ```
 
-### Builtin Types
+### Reserved Types
+
+#### Builtin Types
 
 ```js
-Any, Array, Boolean, Function, Number, Object, RegExp, String, Symbol, Void
+Array, Boolean, Function, Number, Object, RegExp, String, Symbol
+Date, Error, Map, Promise, Proxy, Set, TypedArray, WeakMap, WeakSet
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
@@ -179,23 +181,17 @@ The special type `Any` means that any type is allowed:
 
 #### The `Void` Type
 
-The special type `Void` should only be used to indicate that a function returns nothing (i.e., `undefined`).
+The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Nevertheless `Void` return types *should* usually be explicitly annotated to denote function side-effects.
 
 ```js
 set(name: String, value: String) => Void
 ```
 
-### Builtin Subsets
+Is equivalent to:
 
-#### Object Types
-
-We offer a list of extra object types for convenience:
-- Set
-- Map
-- Date
-- Error
-- Promise
-- Proxy
+```js
+set(name: String, value: String)
+```
 
 #### The `Predicate` Type
 
