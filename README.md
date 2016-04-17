@@ -161,6 +161,13 @@ In the case of an anonymous [optional parameter](#optional-parameters) the type 
 toggle(String, ?: Boolean) => Boolean
 ```
 
+In the case of an anonymous rest parameter, simply omit the name:
+
+```js
+(...: Any[]) => Array
+```
+
+
 ### Constructors
 
 Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
