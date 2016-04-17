@@ -35,14 +35,15 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
   - [Anonymous Parameters](#anonymous-parameters)
-  - [Constructors](#constructors)
-  - [Array Types](#array-types)
-  - [Union Types](#union-types)
-  - [Literal Types](#literal-types)
-  - [Builtin Types](#builtin-types)
+  - [Reserved Types](#reserved-types)
+    - [Builtin Types](#builtin-types)
     - [The `Any` Type](#the-any-type)
     - [The `Void` Type](#the-void-type)
     - [The `Predicate` Type](#the-predicate-type)
+  - [Literal Types](#literal-types)
+  - [Array Types](#array-types)
+  - [Union Types](#union-types)
+  - [Constructors](#constructors)
   - [Throwing functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
@@ -166,22 +167,53 @@ In the case of an anonymous rest parameter, simply omit the name:
 (...: Any[]) => Array
 ```
 
+### Reserved Types
 
-### Constructors
-
-Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
+#### Builtin Types
 
 ```js
-new User({ username: String }) => UserInstance
+Array, Boolean, Function, Number, Object, RegExp, String, Symbol
+Date, Error, Map, Promise, Proxy, Set, TypedArray, WeakMap, WeakSet
 ```
 
-In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
+Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
+
+#### The `Any` Type
+
+The special type `Any` means that any type is allowed:
 
 ```js
-interface UserInstance {
-  username: String,
-  credentials: String
-}
+(...args: Any[]) => Array
+```
+
+#### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Nevertheless `Void` return types *should* usually be explicitly annotated to denote function side-effects.
+
+```js
+set(name: String, value: String) => Void
+```
+
+Is equivalent to:
+
+```js
+set(name: String, value: String)
+```
+
+#### The `Predicate` Type
+
+The special type `Predicate` is a function with the following signature:
+
+```js
+(...args: Any[]) => Boolean
+```
+
+### Literal Types
+
+Literals are also accepted as types.
+
+```js
+signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
 ```
 
 ### Array Types
@@ -200,51 +232,21 @@ Union types are denoted with the pipe symbol, `|`:
 (userInput: String|Number) => String|Number
 ```
 
-### Literal Types
+### Constructors
 
-Literals are also accepted as types.
+Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
 
 ```js
-signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
+new User({ username: String }) => UserInstance
 ```
 
-### Builtin Types
+In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
 
 ```js
-Any, Array, Boolean, Function, Number, Object, RegExp, String, Symbol, Void, Predicate
-```
-
-Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
-
-#### The `Any` Type
-
-The special type `Any` means that any type is allowed:
-
-```js
-(...args: Any[]) => Array
-```
-
-#### The `Void` Type
-
-The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Since `Void` return types imply function side-effects, `Void` return types should usually be explicitly annotated.
-
-```js
-set(name: String, value: String) => Void
-```
-
-Is equivalent to:
-
-```js
-set(name: String, value: String)
-```
-
-
-#### The `Predicate` Type
-
-The special type `Predicate` is a function with the following signature:
-
-```js
-(...args: Any[]) => Boolean
+interface UserInstance {
+  username: String,
+  credentials: String
+}
 ```
 
 ### Throwing functions
