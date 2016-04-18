@@ -36,8 +36,11 @@
     "babel-cli": "^6.2.0",
     "babel-eslint": "^5.0.0-beta4",
     "babel-preset-es2015": "^6.1.18",
+    "ebnf-parser": "^0.1.10",
     "eslint": "^1.10.2",
-    "rimraf": "^2.4.4",
+    "jison": "^0.4.17",
+    "lex-parser": "^0.1.4",
+    "rimraf": "2.5.2",
     "tape": "^4.2.2",
     "watch": "^0.16.0"
   },

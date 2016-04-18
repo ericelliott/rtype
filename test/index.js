@@ -18,3 +18,4 @@ test('rtype(type: Predicate | String) => Predicate', (t) => {
 });
 
 import './builtins';
+import './ebnf/index.js';
