@@ -482,6 +482,18 @@ interface Bot {
 }
 ```
 
+## Event Emitters
+
+When composing an observable interface, you can use the `emits` keyword to describe the events it emits:
+
+```js
+interface Channel {
+  ...EventEmitter
+}, emits: {
+  'messageAdded': (body: String, authorId: Number),
+  'memberJoined': (id: Number, { name: String, email: String })
+}
+```
 
 ## Comments
 
