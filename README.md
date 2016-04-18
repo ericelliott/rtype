@@ -40,6 +40,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
     - [The `Any` Type](#the-any-type)
     - [The `Void` Type](#the-void-type)
     - [The `Predicate` Type](#the-predicate-type)
+    - [The `Iterable` Type](#the-iterable-type)
   - [Literal Types](#literal-types)
   - [Array Types](#array-types)
   - [Union Types](#union-types)
@@ -206,6 +207,31 @@ The special type `Predicate` is a function with the following signature:
 
 ```js
 (...args: Any[]) => Boolean
+```
+
+#### The `Iterable` Type
+
+Arrays, typed arrays, strings, maps and sets are iterable. Additionally any object that implements the @@iterator method can be iterated.
+
+```js
+(paramName: Iterable) => Void
+```
+
+Is equivalent to
+
+```TS
+interface IterableObject {
+  [Symbol.iterator]: () => Iterator
+}
+
+interface Iterator {
+  next() {
+    done: Boolean,
+    value?: Any
+  }
+}
+
+(paramName: Array | TypedArray | String | Map | Set | IterableObject) => Void
 ```
 
 ### Literal Types
