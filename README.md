@@ -116,7 +116,7 @@ To make the signature familiar to readers, we use common JavaScript idioms such 
 ({ count = 0: Number }) => Any
 ```
 
-If a parameter has a default value, most built-in types can be inferred:
+If a parameter or property has a default value, most built-in types can be inferred:
 
 ```js
 ({ count = 0 }) => Any
