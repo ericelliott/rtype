@@ -156,7 +156,7 @@ Parameter names can be omitted:
 is(Any) => Boolean
 ```
 
-In the case of an anonymous [optional parameter](#optional-parameters) the type needs to be prefixed by `?:`:
+In the case of an anonymous [optional parameter](#optional-parameters) the type must be prefixed by `?:`:
 
 ```js
 toggle(String, ?: Boolean) => Boolean
