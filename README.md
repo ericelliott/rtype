@@ -122,7 +122,7 @@ If a parameter or property has a default value, most built-in types can be infer
 ({ count = 0 }) => Any
 ```
 
-If the type is a [union](#union-types) or [`Any`](#the-any-type), it needs to be specified:
+If the type is a [union](#union-types) or [`Any`](#the-any-type), it must be specified:
 
 ```js
 ({ collection = []: Array | Object }) => Any
