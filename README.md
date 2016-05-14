@@ -28,10 +28,10 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 ## Table of Contents
 
 - [About Rtype](#about-rtype)
-- [What is Rtype?](#what-is-rtype)
-- [Status: RFC](#status-rfc)
-- [Why?](#why)
-- [Why Not Just Use TypeScript?](#why-not-just-use-typescript)
+  - [What is Rtype?](#what-is-rtype)
+  - [Status: RFC](#status-rfc)
+  - [Why?](#why)
+  - [Why Not Just Use TypeScript?](#why-not-just-use-typescript)
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
   - [Anonymous Parameters](#anonymous-parameters)
@@ -42,7 +42,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
     - [The `Predicate` Type](#the-predicate-type)
     - [The `Iterable` Type](#the-iterable-type)
   - [Literal Types](#literal-types)
-  - [Array Types](#array-types)
+  - [Typed Arrays](#typed-arrays)
   - [Union Types](#union-types)
   - [Constructors](#constructors)
   - [Throwing functions](#throwing-functions)
@@ -63,12 +63,12 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 * Can embed in JS as strings, for example with [rfx](https://github.com/ericelliott/rfx). Affords easy runtime reflection.
 * Standing on the shoulders of giants. Inspired by: ES6, TypeScript, Haskell, Flow, & React
 
-## What is Rtype?
+### What is Rtype?
 
 Rtype is a JS-native representation of structural type interfaces with a TypeScript-inspired notation that's great for documentation.
 
 
-## Status: RFC
+### Status: RFC
 
 Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/new).
 
@@ -77,7 +77,7 @@ Currently in-use for production library API documentation, but breaking changes 
 In the future, the `rtype` library will parse rtype strings and return predicate functions for runtime type checking. Static analysis tools are also [in development](https://github.com/ericelliott/rtype/issues/89). If you're interested in helping, [please contact us](https://github.com/ericelliott/rtype/issues/new?title=volunteer+for+tools).
 
 
-## Why?
+### Why?
 
 Perhaps the most important part of API documentation is to quickly grasp the function signatures and data structures required to work with the API. There are existing standards for this stuff, but we think we can improve on them:
 
@@ -87,7 +87,7 @@ Perhaps the most important part of API documentation is to quickly grasp the fun
 We want a type representation that is very clear to modern JavaScript developers (ES2015+), that could potentially be used at runtime with simple utilities.
 
 
-## Why Not Just Use TypeScript?
+### Why Not Just Use TypeScript?
 
 We want the best of all worlds:
 
@@ -111,8 +111,7 @@ Function types are described by a **function signature**. The function signature
 To make the signature familiar to readers, we use common JavaScript idioms such as destructuring, defaults, and rest parameters:
 
 ```js
-(...args: String[]) => Any
-(myArray: []) => Any
+(...args: [...String]) => Any
 ({ count = 0: Number }) => Any
 ```
 
@@ -165,7 +164,7 @@ toggle(String, ?: Boolean) => Boolean
 In the case of an anonymous rest parameter, simply omit the name:
 
 ```js
-(...: Any[]) => Array
+(...: [...Any]) => Array
 ```
 
 ### Reserved Types
@@ -184,7 +183,7 @@ Many builtin types are named after JavaScript constructors. Many syntax highligh
 The special type `Any` means that any type is allowed:
 
 ```js
-(...args: Any[]) => Array
+(...args: [...Any]) => Array
 ```
 
 #### The `Void` Type
@@ -206,7 +205,7 @@ set(name: String, value: String)
 The special type `Predicate` is a function with the following signature:
 
 ```js
-(...args: Any[]) => Boolean
+(...args: [...Any]) => Boolean
 ```
 
 #### The `Iterable` Type
@@ -242,12 +241,25 @@ Literals are also accepted as types.
 signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
 ```
 
-### Array Types
+### Typed Arrays
 
 Arrays with typed contents can be represented like this:
 
 ```js
-Number[]
+// an array that contains exactly 2 elements
+[Number, String]
+```
+
+For **∅ or more** and **1 or more** element(s) of the same type you can use the rest operator like so:
+
+```js
+// 0 or more
+[...Number]
+
+// 1 or more
+[Number...]
+//which is equivalent to
+[Number, ...Number]
 ```
 
 ### Union Types
@@ -348,8 +360,8 @@ For polymorphic functions, use multiple function signatures:
 
 ```js
 interface Collection {
-  (items: Array[]) => Array[],
-  (items: Object[]) => Object[]
+  (items: [...Array]) => [...Array],
+  (items: [...Object]) => [...Object]
 }
 ```
 
@@ -358,8 +370,8 @@ Note that named function signatures in an interface block indicate methods, rath
 ```js
 interface Collection {
   (signatureParam: Any) => Any, // Collection() signature
-  method1(items: Array[]) => Array[], // method
-  method2(items: Object[]) => Object[] // method
+  method1(items: [...Array]) => [...Array], // method
+  method2(items: [...Object]) => [...Object] // method
 }
 
 // in JS:
