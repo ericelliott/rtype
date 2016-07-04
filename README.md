@@ -60,7 +60,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 
 * Great for simple documentation.
 * Compiler-agnostic type notation - for use with ECMAScript standard tools.
-* Aim to provide low learning curve for JS developers. There's no place for uncertainty.
+* Low learning curve for JavaScript developers.
 * Can embed in JS as strings, for example with [rfx](https://github.com/ericelliott/rfx). Affords easy runtime reflection.
 * Standing on the shoulders of giants. Inspired by: ES6, TypeScript, Haskell, Flow, & React
 
