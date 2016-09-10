@@ -41,8 +41,9 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
     - [The `Void` Type](#the-void-type)
     - [The `Predicate` Type](#the-predicate-type)
     - [The `Iterable` Type](#the-iterable-type)
+    - [The `TypedArray` Type](#the-typedarray-type)
   - [Literal Types](#literal-types)
-  - [Typed Arrays](#typed-arrays)
+  - [Tuples](#tuples)
   - [Union Types](#union-types)
   - [Constructors](#constructors)
   - [Throwing functions](#throwing-functions)
@@ -174,7 +175,7 @@ In the case of an anonymous rest parameter, simply omit the name:
 
 ```js
 Array, Boolean, Function, Number, Object, RegExp, String, Symbol
-Date, Error, Map, Promise, Proxy, Set, TypedArray, WeakMap, WeakSet
+ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
 Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
@@ -231,7 +232,20 @@ interface Iterator {
   }
 }
 
-(paramName: Array | TypedArray | String | Map | Set | IterableObject) => Void
+(paramName: IterableObject) => Void
+```
+
+#### The `TypedArray` Type
+
+It covers these contructors: `Int8Array`, `Uint8Array`, `Uint8ClampedArray`, `Int16Array`, `Uint16Array`, `Int32Array`, `Uint32Array`, `Float32Array`, `Float64Array`.
+
+```TS
+interface TypedArray {
+  new (length: Number) => TypedArrayInstance: Object,
+  new (TypedArrayInstance: Object) => TypedArrayInstance: Object,
+  new (buffer: ArrayBuffer, byteOffset?: Number, length?: Number) => TypedArrayInstance: Object,
+  this.from
+}
 ```
 
 ### Literal Types
@@ -242,9 +256,9 @@ Literals are also accepted as types.
 signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
 ```
 
-### Typed Arrays
+### Tuples
 
-Arrays with typed contents can be represented like this:
+The type of arrays' elements can also be specified:
 
 ```js
 // an array that contains exactly 2 elements
