@@ -46,9 +46,12 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Tuples](#tuples)
   - [Union Types](#union-types)
   - [Constructors](#constructors)
+  - [Accessor Descriptors](#accessor-descriptors)
   - [Throwing functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
+  - [Function Interface](#function-interface)
+  - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Comments](#comments)
 - [`interfaces.rtype`](#interfacesrtype)
@@ -239,15 +242,6 @@ interface Iterator {
 
 It covers these contructors: `Int8Array`, `Uint8Array`, `Uint8ClampedArray`, `Int16Array`, `Uint16Array`, `Int32Array`, `Uint32Array`, `Float32Array`, `Float64Array`.
 
-```TS
-interface TypedArray {
-  new (length: Number) => TypedArrayInstance: Object,
-  new (TypedArrayInstance: Object) => TypedArrayInstance: Object,
-  new (buffer: ArrayBuffer, byteOffset?: Number, length?: Number) => TypedArrayInstance: Object,
-  this.from
-}
-```
-
 ### Literal Types
 
 Literals are also accepted as types.
@@ -290,7 +284,7 @@ Union types are denoted with the pipe symbol, `|`:
 Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
 
 ```js
-new User({ username: String }) => UserInstance
+new User({ username: String }) => UserInstance: Object
 ```
 
 In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
@@ -299,6 +293,18 @@ In JavaScript, a class or constructor is not synonymous with an interface. The c
 interface UserInstance {
   username: String,
   credentials: String
+}
+```
+
+### Accessor Descriptors
+
+An accessor function is defined by prefixing a method with `get` or `set`.
+
+```
+new User({ username: String }) => {
+  username: String,
+  get name() => String,
+  set name(newName: String) // return type defaults to Void
 }
 ```
 
@@ -340,13 +346,9 @@ signatureName()
 
 ## Interface: User Defined Types
 
-You can create your own types using `interface`:
+You can create your own types using the `interface` keyword.
 
-```js
-User, Record, Avatar, Cart
-```
-
-An interface can spell out the structure of the object:
+An interface can spell out the structure of an object:
 
 ```js
 interface UserInstance {
@@ -356,8 +358,26 @@ interface UserInstance {
 }
 ```
 
+Interfaces support builtin literal types:
 
-A regular function signature is shorthand for a function interface:
+```js
+interface UserInstance {
+  name: /\w+/,
+  description?: '',
+  friends?: [],
+  profile?: {}
+}
+```
+
+A one-line interface doesn't need brackets:
+
+```js
+interface Name: /\w+/
+```
+
+### Function Interface
+
+A regular function signature is a shorthand for a function interface:
 
 ```js
 user({ name: String, avatarUrl?: Url }) => UserInstance
@@ -395,24 +415,7 @@ interface Collection {
 // typeof Collection.method2 === 'function'
 ```
 
-
-Interfaces support builtin literal types:
-
-```js
-interface UserInstance {
-  name: /\w+/,
-  description?: '',
-  likes?: [],
-  data?: {}
-}
-```
-
-A one-line interface doesn't need brackets:
-
-```js
-interface Name: /\w+/
-```
-
+### Predicate Literals
 
 Interfaces may use predicate literals, terminated by a semicolon:
 
@@ -439,7 +442,6 @@ interface EnhancedInteger (number) => {
   double() => Number
 }
 ```
-
 
 ## Composing types
 
