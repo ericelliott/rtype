@@ -501,7 +501,7 @@ interface Professor {
 }
 ```
 
-Obviusly, merging incompatible interfaces is also invalid:
+Obviously, merging incompatible interfaces is also invalid:
 
 ```js
 // Invalid!
