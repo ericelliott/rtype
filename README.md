@@ -181,8 +181,6 @@ Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
-Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
-
 #### The `Any` Type
 
 The special type `Any` means that any type is allowed:
@@ -404,15 +402,10 @@ Note that named function signatures in an interface block indicate methods, rath
 
 ```js
 interface Collection {
-  (signatureParam: Any) => Any, // Collection() signature
-  method1(items: [...Array]) => [...Array], // method
+  (signatureParam: Any) => Any,              // Collection() signature
+  method1(items: [...Array]) => [...Array],  // method
   method2(items: [...Object]) => [...Object] // method
 }
-
-// in JS:
-// typeof Collection === 'function'
-// typeof Collection.method1 === 'function'
-// typeof Collection.method2 === 'function'
 ```
 
 ### Predicate Literals
@@ -450,19 +443,19 @@ Whenever you want to compose an interface out of several others, use the spread 
 ```js
 interface Person {
   name: Name,
-  birthDate: Number,
+  birthDate: Number
 }
 
 interface User {
   username: String,
   description?: String,
-  kudos = 0: Number,
+  kudos = 0: Number
 }
 
 interface HumanUser {
   ...Person,
   ...User,
-  avatarUrl: String,
+  avatarUrl: String
 }
 ```
 
@@ -471,7 +464,7 @@ You can also use the spread inside object type literals:
 ```js
 interface Company {
   name: Name,
-  owner: { ...Person, shareStake: Number },
+  owner: { ...Person, shareStake: Number }
 }
 ```
 
@@ -481,13 +474,13 @@ In case of a name conflict, properties with same names are merged. It means all 
 interface Creature {
   name: String,
   character: String,
-  strength: (number) => (number >= 0 && number <= 100),
+  strength: (number) => (number >= 0 && number <= 100)
 }
 
 interface Human {
   ...Creature,
   name: /^(.* )?[A-Z][a-z]+$/,
-  character: 'friendly' | 'grumpy',
+  character: 'friendly' | 'grumpy'
 }
 ```
 
@@ -497,7 +490,7 @@ To make sure we can run a static type check for you, we don’t allow merging tw
 // Invalid!
 interface Professor {
   ...Human,
-  name: /^prof\. \w+$/,
+  name: /^prof\. \w+$/
 }
 ```
 
@@ -507,7 +500,7 @@ Obviously, merging incompatible interfaces is also invalid:
 // Invalid!
 interface Bot {
   ...Creature,
-  name: Number,
+  name: Number
 }
 ```
 
