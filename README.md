@@ -181,6 +181,7 @@ In the case of an anonymous rest parameter, simply omit the name:
 Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
+Note: `null` is part of `Any` and is *not* covered by `Object`.
 
 #### The `Any` Type
 
@@ -459,7 +460,42 @@ interface clientHobbies {
 }
 ```
 
-[//]: # (#### Sub-types)
+#### String Sub-types
+
+Types that are automatically coerced into a string can also be documented:
+
+```js
+const elements = {
+  …
+  1e+1: 'neon',
+  013:  'sodium',
+  0xC:  'magnesium',
+  13:   'aluminium',
+  …
+}
+
+// can be represented using
+
+interface Example {
+  [[protons: String(Number)]]: String
+}
+```
+
+Regular expression filtering is also available:
+
+```js
+var elements = {
+  'element-1': 'hydrogen',
+  …
+  'element-118': 'ununoctium'
+}
+
+// can be represented using
+
+interface Example {
+  [[aka: String(/^element\-[1-118]$/)]]: String
+}
+```
 
 ### Predicate Literals
 
@@ -488,6 +524,7 @@ interface EnhancedInteger (number) => {
   double() => Number
 }
 ```
+
 
 ## Composing types
 
