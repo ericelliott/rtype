@@ -51,6 +51,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
+  - [Key Definition](#key-definition)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Comments](#comments)
@@ -407,6 +408,58 @@ interface Collection {
   method2(items: [...Object]) => [...Object] // method
 }
 ```
+
+### Key Definition
+
+For convenience, interfaces that feature similar keys can use property templates.
+These templates let us define labels—and optionally types—of objects' keys.  
+There are only 2 valid types of keys: `String` and `Symbol`.
+If ommited the type defaults to `String`.
+
+```js
+{
+  [id1]: {
+    skating: {time: 1000, money: 300},
+    'cooking': {time: 9999, money: 999}
+  },
+  [id2]: {
+    "jogging": {time: 300, money: 0}
+  }
+  etc.
+}
+```
+
+The preceding object can be expressed using this interface:
+
+```js
+interface clientHobbies {
+  [[id: Symbol]]: {
+    [[hobby]]: {          // [[hobby: String]]: {
+      time: Number,
+      money: Number
+    }
+  }
+}
+```
+
+#### Granularity
+
+You can even go further to improve the semantics of your interfaces:
+
+```js
+interface Expenditure {
+  time: Number,
+  money: Number
+}
+
+interface clientHobbies {
+  [[id: Symbol]]: {
+    [[hobby]]: Expenditure
+  }
+}
+```
+
+[//]: # (#### Sub-types)
 
 ### Predicate Literals
 
