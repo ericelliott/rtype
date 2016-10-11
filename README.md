@@ -414,8 +414,8 @@ interface Collection {
 
 For convenience, interfaces that feature similar keys can use property templates.
 These templates let us define labels—and optionally types—of objects' keys.  
-There are only 2 valid types of keys: `String` and `Symbol`.
-If ommited the type defaults to `String`.
+*Internally* there are only 2 valid types of keys: `String` and `Symbol`.
+In this regard, [regular expression literal](#regular-expression) and [`Number`](#number) will be automatically mapped to `String`. If ommited the type defaults to `String`.
 
 ```js
 {
@@ -434,16 +434,14 @@ The preceding object can be expressed using this interface:
 
 ```js
 interface clientHobbies {
-  [[id: Symbol]]: {
-    [[hobby]]: {          // [[hobby: String]]: {
+  [id: Symbol]: {
+    [hobby]: {          // [hobby: String]: {
       time: Number,
       money: Number
     }
   }
 }
 ```
-
-#### Granularity
 
 You can even go further to improve the semantics of your interfaces:
 
@@ -454,13 +452,13 @@ interface Expenditure {
 }
 
 interface clientHobbies {
-  [[id: Symbol]]: {
-    [[hobby]]: Expenditure
+  [id: Symbol]: {
+    [hobby]: Expenditure
   }
 }
 ```
 
-#### String Sub-types
+#### Number
 
 Types that are automatically coerced into a string can also be documented:
 
@@ -477,9 +475,11 @@ const elements = {
 // can be represented using
 
 interface Example {
-  [[atomic-number: String(Number)]]: String
+  [atomic-number: Number]: String
 }
 ```
+
+#### Regular Expression
 
 Regular expression filtering is also available:
 
@@ -493,7 +493,7 @@ var elements = {
 // can be represented using
 
 interface Example {
-  [[aka: String(/^element\-[1-118]$/)]]: String
+  [aka: /^element\-[1-118]$/]: String
 }
 ```
 
