@@ -475,7 +475,7 @@ const elements = {
 // can be represented using
 
 interface Example {
-  [atomic-number: Number]: String
+  [Z: Number]: String
 }
 ```
 
