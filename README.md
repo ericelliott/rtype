@@ -152,6 +152,12 @@ Optional parameters can be indicated with `?`:
 (param: Type, optParam?: Type) => ReturnType
 ```
 
+Is equivalent to:
+
+```js
+(param: Type, optParam = undefined: Type) => ReturnType
+```
+
 ### Anonymous Parameters
 
 Parameter names can be omitted:
@@ -410,7 +416,8 @@ interface Collection {
 }
 
 // in JS:
-// typeof Collection === 'function'
+// typeof Collection ==
+'function'
 // typeof Collection.method1 === 'function'
 // typeof Collection.method2 === 'function'
 ```
