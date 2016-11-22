@@ -416,8 +416,7 @@ interface Collection {
 }
 
 // in JS:
-// typeof Collection ==
-'function'
+// typeof Collection == 'function'
 // typeof Collection.method1 === 'function'
 // typeof Collection.method2 === 'function'
 ```
