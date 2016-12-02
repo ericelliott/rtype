@@ -51,6 +51,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
+  - [Key Definition](#key-definition)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Comments](#comments)
@@ -180,8 +181,7 @@ In the case of an anonymous rest parameter, simply omit the name:
 Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
-
-Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
+Note: `null` is part of `Any` and is *not* covered by `Object`.
 
 #### The `Any` Type
 
@@ -404,15 +404,97 @@ Note that named function signatures in an interface block indicate methods, rath
 
 ```js
 interface Collection {
-  (signatureParam: Any) => Any, // Collection() signature
-  method1(items: [...Array]) => [...Array], // method
+  (signatureParam: Any) => Any,              // Collection() signature
+  method1(items: [...Array]) => [...Array],  // method
   method2(items: [...Object]) => [...Object] // method
 }
+```
 
-// in JS:
-// typeof Collection === 'function'
-// typeof Collection.method1 === 'function'
-// typeof Collection.method2 === 'function'
+### Key Definition
+
+For convenience, interfaces that feature similar keys can use property templates.
+These templates let us define labels—and optionally types—of objects' keys.  
+*Internally* there are only 2 valid types of keys: `String` and `Symbol`.
+In this regard, [regular expression literal](#regular-expression) and [`Number`](#number) will be automatically mapped to `String`. If ommited the type defaults to `String`.
+
+```js
+{
+  [id1]: {
+    skating: {time: 1000, money: 300},
+    'cooking': {time: 9999, money: 999}
+  },
+  [id2]: {
+    "jogging": {time: 300, money: 0}
+  }
+  etc.
+}
+```
+
+The preceding object can be expressed using this interface:
+
+```js
+interface clientHobbies {
+  [id: Symbol]: {
+    [hobby]: {          // [hobby: String]: {
+      time: Number,
+      money: Number
+    }
+  }
+}
+```
+
+You can even go further to improve the semantics of your interfaces:
+
+```js
+interface Expenditure {
+  time: Number,
+  money: Number
+}
+
+interface clientHobbies {
+  [id: Symbol]: {
+    [hobby]: Expenditure
+  }
+}
+```
+
+#### Number
+
+Types that are automatically coerced into a string can also be documented:
+
+```js
+const elements = {
+  …
+  1e+1: 'neon',
+  013:  'sodium',
+  0xC:  'magnesium',
+  13:   'aluminium',
+  …
+}
+
+// can be represented using
+
+interface Example {
+  [Z: Number]: String
+}
+```
+
+#### Regular Expression
+
+Regular expression filtering is also available:
+
+```js
+var elements = {
+  'element-1': 'hydrogen',
+  …
+  'element-118': 'oganesson'
+}
+
+// can be represented using
+
+interface Example {
+  [aka: /^element\-[1-118]$/]: String
+}
 ```
 
 ### Predicate Literals
@@ -443,6 +525,7 @@ interface EnhancedInteger (number) => {
 }
 ```
 
+
 ## Composing types
 
 Whenever you want to compose an interface out of several others, use the spread operator for that:
@@ -450,19 +533,19 @@ Whenever you want to compose an interface out of several others, use the spread 
 ```js
 interface Person {
   name: Name,
-  birthDate: Number,
+  birthDate: Number
 }
 
 interface User {
   username: String,
   description?: String,
-  kudos = 0: Number,
+  kudos = 0: Number
 }
 
 interface HumanUser {
   ...Person,
   ...User,
-  avatarUrl: String,
+  avatarUrl: String
 }
 ```
 
@@ -471,7 +554,7 @@ You can also use the spread inside object type literals:
 ```js
 interface Company {
   name: Name,
-  owner: { ...Person, shareStake: Number },
+  owner: { ...Person, shareStake: Number }
 }
 ```
 
@@ -481,13 +564,13 @@ In case of a name conflict, properties with same names are merged. It means all 
 interface Creature {
   name: String,
   character: String,
-  strength: (number) => (number >= 0 && number <= 100),
+  strength: (number) => (number >= 0 && number <= 100)
 }
 
 interface Human {
   ...Creature,
   name: /^(.* )?[A-Z][a-z]+$/,
-  character: 'friendly' | 'grumpy',
+  character: 'friendly' | 'grumpy'
 }
 ```
 
@@ -497,7 +580,7 @@ To make sure we can run a static type check for you, we don’t allow merging tw
 // Invalid!
 interface Professor {
   ...Human,
-  name: /^prof\. \w+$/,
+  name: /^prof\. \w+$/
 }
 ```
 
@@ -507,7 +590,7 @@ Obviously, merging incompatible interfaces is also invalid:
 // Invalid!
 interface Bot {
   ...Creature,
-  name: Number,
+  name: Number
 }
 ```
 
