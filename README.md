@@ -487,7 +487,7 @@ Regular expression filtering is also available:
 var elements = {
   'element-1': 'hydrogen',
   …
-  'element-118': 'ununoctium'
+  'element-118': 'oganesson'
 }
 
 // can be represented using
