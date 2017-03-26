@@ -400,6 +400,16 @@ interface Collection {
 }
 ```
 
+If all signatures return/emit/throw/require the same thing, you can consolidate this information in one place:
+
+```js
+interface addEventListener {
+  (type: String, listener: Function | Event, Options?), // assumes Options has been declared before
+  (type: String, listener: Function | Event, useCapture: Boolean),
+  (type: String, listener: Function | Event, useCapture: Boolean, wantsUntrusted?: Boolean)
+} => Void
+```
+
 Note that named function signatures in an interface block indicate methods, rather than additional function signatures:
 
 ```js
@@ -518,7 +528,7 @@ When composing an observable interface, you can use the `emits` keyword to descr
 ```js
 interface Channel {
   ...EventEmitter
-}, emits: {
+} emits: {
   'messageAdded': (body: String, authorId: Number),
   'memberJoined': (id: Number, { name: String, email: String })
 }
