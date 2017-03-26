@@ -181,7 +181,7 @@ Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
-Many builtin types are named after JavaScript constructors. Many syntax highlighters will make the types stand out when the signature is rendered in the docs.
+Note: `null` is part of `Any` and is *not* covered by `Object`.
 
 #### The `Any` Type
 
@@ -404,15 +404,45 @@ Note that named function signatures in an interface block indicate methods, rath
 
 ```js
 interface Collection {
-  (signatureParam: Any) => Any, // Collection() signature
-  method1(items: [...Array]) => [...Array], // method
+  (signatureParam: Any) => Any,              // Collection() signature
+  method1(items: [...Array]) => [...Array],  // method
   method2(items: [...Object]) => [...Object] // method
 }
+```
 
-// in JS:
-// typeof Collection === 'function'
-// typeof Collection.method1 === 'function'
-// typeof Collection.method2 === 'function'
+For convenience you can inline overloaded methods directly inside a function interface.
+
+```js
+interface Foo {
+  (Type) => Type,
+
+  a(Object) => Void,
+  a(String, Number) => Void,
+
+  b(Object) => Void,
+  b(String, Number) => Void
+}
+```
+
+Here is the equivalent using separate interfaces:
+
+```js
+interface a {
+  (Object) => Void,
+  (String, Number) => Void
+}
+
+interface b {
+  (Object) => Void,
+  (String, Number) => Void
+}
+
+interface Foo {
+  (Type) => Type,
+
+  a,
+  b
+}
 ```
 
 ### Predicate Literals
