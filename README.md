@@ -531,6 +531,15 @@ interface Channel {
   'messageAdded': (body: String, authorId: Number),
   'memberJoined': (id: Number, { name: String, email: String })
 }
+
+// this is equivalent
+
+interface Channel {
+  ...EventEmitter
+} emits: {
+  messageAdded(body: String, authorId: Number),
+  memberJoined(id: Number, { Name: String, email: String })
+}
 ```
 
 ## Comments
