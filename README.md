@@ -403,10 +403,9 @@ interface Collection {
 If all signatures return/emit/throw/require the same thing, you can consolidate this information in one place:
 
 ```js
-interface addEventListener {
-  (type: String, listener: Function | Event, Options?), // assumes Options has been declared before
-  (type: String, listener: Function | Event, useCapture: Boolean),
-  (type: String, listener: Function | Event, useCapture: Boolean, wantsUntrusted?: Boolean)
+interface Bar {
+  (String, Object),
+  (String, Boolean)
 } => Void
 ```
 
