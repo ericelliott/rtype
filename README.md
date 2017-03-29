@@ -53,6 +53,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Function Interface](#function-interface)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
+- [Event Emitters](#event-emitters)
 - [Comments](#comments)
 - [`interfaces.rtype`](#interfacesrtype)
 - [References](#references)
