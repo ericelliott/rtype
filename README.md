@@ -200,6 +200,9 @@ In that case, we'll need to change the signature to use a type variable:
 double(x: n) => Number
 ```
 
+By convention, type variables are single letters and lowercased in order to visually distinguish them from predefined types. That way the reader doesn't need to scan back through documentation looking for a type declaration where there is no type declaration to be found.
+
+
 ### Reserved Types
 
 #### Builtin Types
