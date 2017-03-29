@@ -35,6 +35,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Reading Function Signatures](#reading-function-signatures)
   - [Optional Parameters](#optional-parameters)
   - [Anonymous Parameters](#anonymous-parameters)
+  - [Type Variables](#type-variables)
   - [Reserved Types](#reserved-types)
     - [Builtin Types](#builtin-types)
     - [The `Any` Type](#the-any-type)
@@ -170,6 +171,68 @@ In the case of an anonymous rest parameter, simply omit the name:
 
 ```js
 (...: [...Any]) => Array
+```
+
+### Type Variables
+
+Type variables are types that do not need to be declared in advance. They may represent any type, but a single type variable may only represent one type at a time in the scope of the signature being declared.
+
+The signature for double is usually thought of like this:
+
+```js
+double(x: Number) => Number
+```
+
+But what if we want it to accept objects as well?
+
+```js
+const one = {
+  name: 'One',
+  valueOf: () => 1
+};
+
+double(one); // 2
+```
+
+In that case, we'll need to change the signature to use a type variable:
+
+```js
+double(x: n) => Number
+```
+
+If the name of the variable is not important, we'll sometimes leave it off completely:
+
+```js
+double(n) => n
+```
+
+The signature for double is:
+
+```js
+double(x: Number) => Number
+```
+
+But what if we want it to accept objects as well?
+
+```js
+const one = {
+  name: 'One',
+  valueOf: () => 1
+};
+
+double(one); // 2
+```
+
+In that case, we'll need to change the signature to use a type variable:
+
+```js
+double(x: n) => Number
+```
+
+If the name of the variable is not important, we can make the parameter anonymous:
+
+```js
+double(n) => Number
 ```
 
 ### Reserved Types
