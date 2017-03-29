@@ -200,41 +200,6 @@ In that case, we'll need to change the signature to use a type variable:
 double(x: n) => Number
 ```
 
-If the name of the variable is not important, we'll sometimes leave it off completely:
-
-```js
-double(n) => n
-```
-
-The signature for double is:
-
-```js
-double(x: Number) => Number
-```
-
-But what if we want it to accept objects as well?
-
-```js
-const one = {
-  name: 'One',
-  valueOf: () => 1
-};
-
-double(one); // 2
-```
-
-In that case, we'll need to change the signature to use a type variable:
-
-```js
-double(x: n) => Number
-```
-
-If the name of the variable is not important, we can make the parameter anonymous:
-
-```js
-double(n) => Number
-```
-
 ### Reserved Types
 
 #### Builtin Types
