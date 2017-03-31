@@ -432,6 +432,15 @@ interface Collection {
 }
 ```
 
+If all signatures return/emit/throw/require the same thing, you can consolidate this information in one place:
+
+```js
+interface Bar {
+  (String, Object),
+  (String, Boolean)
+} => Void
+```
+
 Note that named function signatures in an interface block indicate methods, rather than additional function signatures:
 
 ```js
@@ -580,9 +589,18 @@ When composing an observable interface, you can use the `emits` keyword to descr
 ```js
 interface Channel {
   ...EventEmitter
-}, emits: {
+} emits: {
   'messageAdded': (body: String, authorId: Number),
   'memberJoined': (id: Number, { name: String, email: String })
+}
+
+// this is equivalent
+
+interface Channel {
+  ...EventEmitter
+} emits: {
+  messageAdded(body: String, authorId: Number),
+  memberJoined(id: Number, { Name: String, email: String })
 }
 ```
 
