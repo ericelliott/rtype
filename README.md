@@ -52,6 +52,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
+  - [Key Definition](#key-definition)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Event Emitters](#event-emitters)
@@ -483,6 +484,39 @@ interface Foo {
 
   a,
   b
+}
+```
+
+### Key Definition
+
+For convenience, interfaces that feature similar keys can use property templates. These templates let us define labels for objects' keys. Optionally you can set their type as well; if omitted the type defaults to `String`.
+
+```js
+{
+  [id1]: {
+    skating: {time: 1000, money: 300},
+    'cooking': {time: 9999, money: 999}
+  },
+  [id2]: {
+    "jogging": {time: 300, money: 0}
+  }
+  etc.
+}
+```
+
+The preceding object can be expressed using these interfaces:
+
+```ts
+interface Expenditure {
+  time: Number,
+  money: Number
+}
+
+interface clientHobbies {
+  [id: Symbol]: {
+ // [hobby: String]: Expenditure
+    [hobby]: Expenditure
+  }
 }
 ```
 
