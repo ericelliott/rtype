@@ -489,7 +489,7 @@ interface Foo {
 
 ### Key Definition
 
-For convenience, interfaces that feature similar keys can use property templates. These templates let us define labels for objects' keys. Optionally you can set their type as well; if omitted the type defaults to `String`.
+Dynamic properties may be labeled and typed. If omitted, the type defaults to `String`.
 
 ```js
 {
@@ -514,8 +514,10 @@ interface Expenditure {
 
 interface clientHobbies {
   [id: Symbol]: {
- // [hobby: String]: Expenditure
+    // The following:
     [hobby]: Expenditure
+    // is equivalent to
+    // [hobby: String]: Expenditure
   }
 }
 ```
