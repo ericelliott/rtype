@@ -262,7 +262,7 @@ interface IterableObject {
 }
 
 interface Iterator {
-  next() {
+  next() => {
     done: Boolean,
     value?: Any
   }
