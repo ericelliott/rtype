@@ -4,24 +4,9 @@
 
 Intuitive structural type notation for JavaScript.
 
-> Dear JSDoc,
->
-> We've had some good times.
-> But it's over. I've moved on.
->
-> I've switched to Rtype.
-> Now my interface docs are alive!
->
-> ~ Eric
-
 ```js
 (param: Type) => ReturnType
 ```
-
-This repository is for the notation documentation and parser.
-
-If you're interested in using rtype to build interfaces in your standard JavaScript code, see [rfx](https://github.com/ericelliott/rfx).
-
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -67,7 +52,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 * Great for simple documentation.
 * Compiler-agnostic type notation - for use with ECMAScript standard tools.
 * Low learning curve for JavaScript developers.
-* Can embed in JS as strings, for example with [rfx](https://github.com/ericelliott/rfx). Affords easy runtime reflection.
+* Can embed in JS as strings, for example with [rfx](https://github.com/ericelliott/rfx) for easy runtime reflection.
 * Standing on the shoulders of giants. Inspired by: ES6, TypeScript, Haskell, Flow, & React
 
 ### What is Rtype?
