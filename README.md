@@ -52,7 +52,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
-  - [Key Definition](#key-definition)
+  - [Dynamic Property Keys](#dynamic-property-keys)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Event Emitters](#event-emitters)
@@ -487,7 +487,7 @@ interface Foo {
 }
 ```
 
-### Key Definition
+### Dynamic Property Keys
 
 Dynamic properties may be labeled and typed. If omitted, the type defaults to `String`.
 
@@ -500,7 +500,7 @@ Dynamic properties may be labeled and typed. If omitted, the type defaults to `S
   [id2]: {
     "jogging": {time: 300, money: 0}
   }
-  etc.
+  // etc...
 }
 ```
 
