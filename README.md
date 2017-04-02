@@ -52,6 +52,7 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
+  - [Dynamic Property Keys](#dynamic-property-keys)
   - [Predicate Literals](#predicate-literals)
 - [Composing types](#composing-types)
 - [Event Emitters](#event-emitters)
@@ -483,6 +484,41 @@ interface Foo {
 
   a,
   b
+}
+```
+
+### Dynamic Property Keys
+
+Dynamic properties may be labeled and typed. If omitted, the type defaults to `String`.
+
+```js
+{
+  [id1]: {
+    skating: {time: 1000, money: 300},
+    'cooking': {time: 9999, money: 999}
+  },
+  [id2]: {
+    "jogging": {time: 300, money: 0}
+  }
+  // etc...
+}
+```
+
+The preceding object can be expressed using these interfaces:
+
+```ts
+interface Expenditure {
+  time: Number,
+  money: Number
+}
+
+interface clientHobbies {
+  [id: Symbol]: {
+    // The following:
+    [hobby]: Expenditure
+    // is equivalent to
+    // [hobby: String]: Expenditure
+  }
 }
 ```
 
