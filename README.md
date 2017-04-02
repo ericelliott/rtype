@@ -15,7 +15,7 @@ Intuitive structural type notation for JavaScript.
 > ~ Eric
 
 ```js
-(param: Type) => ReturnType
+(parameterName: Type) => ReturnType
 ```
 
 This repository is for the notation documentation and parser.
@@ -256,7 +256,7 @@ Arrays, typed arrays, strings, maps and sets are iterable. Additionally any obje
 
 Is equivalent to
 
-```TS
+```ts
 interface IterableObject {
   [Symbol.iterator]: () => Iterator
 }
@@ -317,7 +317,7 @@ Union types are denoted with the pipe symbol, `|`:
 Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
 
 ```js
-new User({ username: String }) => UserInstance: Object
+new User({ username: String }) => UserInstance
 ```
 
 In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
@@ -333,7 +333,7 @@ interface UserInstance {
 
 An accessor function is defined by prefixing a method with `get` or `set`.
 
-```
+```js
 new User({ username: String }) => {
   username: String,
   get name() => String,
@@ -346,7 +346,7 @@ new User({ username: String }) => {
 To indicate that a function can throw an error you can use the `throws` keyword.
 
 ```js
-(paramName: Type) => Type, throws: TypeError|DOMException
+(paramName: Type) => Type, throws: TypeError | DOMException
 ```
 
 For the generic `Error` type, you can optionally omit the throw type:
@@ -384,7 +384,7 @@ You can create your own types using the `interface` keyword.
 An interface can spell out the structure of an object:
 
 ```js
-interface UserInstance {
+interface UserProfile {
   name: String,
   avatarUrl?: Url,
   about?: String
@@ -557,19 +557,19 @@ Whenever you want to compose an interface out of several others, use the spread 
 ```js
 interface Person {
   name: Name,
-  birthDate: Number,
+  birthDate: Number
 }
 
 interface User {
   username: String,
   description?: String,
-  kudos = 0: Number,
+  kudos = 0: Number
 }
 
 interface HumanUser {
   ...Person,
   ...User,
-  avatarUrl: String,
+  avatarUrl: String
 }
 ```
 
@@ -578,7 +578,7 @@ You can also use the spread inside object type literals:
 ```js
 interface Company {
   name: Name,
-  owner: { ...Person, shareStake: Number },
+  owner: { ...Person, shareStake: Number }
 }
 ```
 
@@ -588,13 +588,13 @@ In case of a name conflict, properties with same names are merged. It means all 
 interface Creature {
   name: String,
   character: String,
-  strength: (number) => (number >= 0 && number <= 100),
+  strength: (number) => (number >= 0 && number <= 100)
 }
 
 interface Human {
   ...Creature,
   name: /^(.* )?[A-Z][a-z]+$/,
-  character: 'friendly' | 'grumpy',
+  character: 'friendly' | 'grumpy'
 }
 ```
 
@@ -604,7 +604,7 @@ To make sure we can run a static type check for you, we don’t allow merging tw
 // Invalid!
 interface Professor {
   ...Human,
-  name: /^prof\. \w+$/,
+  name: /^prof\. \w+$/
 }
 ```
 
@@ -614,7 +614,7 @@ Obviously, merging incompatible interfaces is also invalid:
 // Invalid!
 interface Bot {
   ...Creature,
-  name: Number,
+  name: Number
 }
 ```
 
@@ -636,7 +636,7 @@ interface Channel {
   ...EventEmitter
 } emits: {
   messageAdded(body: String, authorId: Number),
-  memberJoined(id: Number, { Name: String, email: String })
+  memberJoined(id: Number, { name: String, email: String })
 }
 ```
 
