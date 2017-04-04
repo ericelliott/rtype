@@ -139,6 +139,12 @@ Optional parameters can be indicated with `?`:
 (param: Type, optParam?: Type) => ReturnType
 ```
 
+Is equivalent to:
+
+```js
+(param: Type, optParam = undefined: Type) => ReturnType
+```
+
 ### Anonymous Parameters
 
 Parameter names can be omitted:
