@@ -57,7 +57,6 @@ If you're interested in using rtype to build interfaces in your standard JavaScr
 - [Composing types](#composing-types)
 - [Event Emitters](#event-emitters)
 - [Comments](#comments)
-- [`interfaces.rtype`](#interfacesrtype)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
