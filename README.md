@@ -156,7 +156,13 @@ toggle(String, ?: Boolean) => Boolean
 In the case of an anonymous rest parameter, simply omit the name:
 
 ```js
-(...: [...Any]) => Array
+(...) => Array  // `...: Array` is implied.
+```
+
+If you want to specify the type of the array elements, you can:
+
+```js
+(...: [...Number]) => Array
 ```
 
 ### Type Variables
@@ -208,28 +214,6 @@ The special type `Any` means that any type is allowed:
 (...args: [...Any]) => Array
 ```
 
-#### The `Void` Type
-
-The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Nevertheless `Void` return types *should* usually be explicitly annotated to denote function side-effects.
-
-```js
-set(name: String, value: String) => Void
-```
-
-Is equivalent to:
-
-```js
-set(name: String, value: String)
-```
-
-#### The `Predicate` Type
-
-The special type `Predicate` is a function with the following signature:
-
-```js
-(...args: [...Any]) => Boolean
-```
-
 #### The `Iterable` Type
 
 Arrays, typed arrays, strings, maps and sets are iterable. Additionally any object that implements the @@iterator method can be iterated.
@@ -255,9 +239,40 @@ interface Iterator {
 (paramName: IterableObject) => Void
 ```
 
+#### The `Number` Type
+
+The `Number` type includes any object which defines a `valueOf` method which returns a value of the JavaScript `Number` type.
+
+JavaScript's built-in math operators (`+`, `-`, `*`, etc...) will work with such objects.
+
+
+#### The `Predicate` Type
+
+The special type `Predicate` is a function with the following signature:
+
+```js
+(...args: [...Any]) => Boolean
+```
+
+
 #### The `TypedArray` Type
 
 It covers these contructors: `Int8Array`, `Uint8Array`, `Uint8ClampedArray`, `Int16Array`, `Uint16Array`, `Int32Array`, `Uint32Array`, `Float32Array`, `Float64Array`.
+
+#### The `Void` Type
+
+The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Nevertheless `Void` return types *should* usually be explicitly annotated to denote function side-effects.
+
+```js
+set(name: String, value: String) => Void
+```
+
+Is equivalent to:
+
+```js
+set(name: String, value: String)
+```
+
 
 ### Literal Types
 
