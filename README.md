@@ -128,7 +128,7 @@ Optionally, you may name the return value, similar to named parameters:
 Or even name a signature to reuse it later on:
 
 ```js
-connect(options: Object) => connection: Object
+connect = (options: Object) => connection: Object
 ```
 
 ### Optional Parameters
@@ -144,13 +144,13 @@ Optional parameters can be indicated with `?`:
 Parameter names can be omitted:
 
 ```js
-is(Any) => Boolean
+is = (Any) => Boolean
 ```
 
 In the case of an anonymous [optional parameter](#optional-parameters) the type must be prefixed by `?:`:
 
 ```js
-toggle(String, ?: Boolean) => Boolean
+toggle = (String, ?: Boolean) => Boolean
 ```
 
 In the case of an anonymous rest parameter, simply omit the name:
@@ -166,7 +166,7 @@ Type variables are types that do not need to be declared in advance. They may re
 The signature for double is usually thought of like this:
 
 ```js
-double(x: Number) => Number
+double = Number => Number
 ```
 
 But what if we want it to accept objects as well?
@@ -183,7 +183,7 @@ double(one); // 2
 In that case, we'll need to change the signature to use a type variable:
 
 ```js
-double(x: n) => Number
+double = n => Number
 ```
 
 By convention, type variables are single letters and lowercased in order to visually distinguish them from predefined types. That way the reader doesn't need to scan back through documentation looking for a type declaration where there is no type declaration to be found.
@@ -198,7 +198,7 @@ Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
-Note: `null` is part of `Any` and is *not* covered by `Object`.
+Note: `null` is part of `Any` and is *not* covered by `Object`. If you want to allow `null` with `Object`, you must specify the union explicitly: `Object | null`
 
 #### The `Any` Type
 
@@ -210,16 +210,10 @@ The special type `Any` means that any type is allowed:
 
 #### The `Void` Type
 
-The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., `undefined`). Since `Void` is the default return type, it can be optionally omitted. Nevertheless `Void` return types *should* usually be explicitly annotated to denote function side-effects.
+The special type `Void` should only be used to indicate that a function returns no meaningful value (i.e., implicit `undefined`).
 
 ```js
-set(name: String, value: String) => Void
-```
-
-Is equivalent to:
-
-```js
-set(name: String, value: String)
+setProp = (propName: String, value: String, Object) => Void
 ```
 
 #### The `Predicate` Type
@@ -227,7 +221,7 @@ set(name: String, value: String)
 The special type `Predicate` is a function with the following signature:
 
 ```js
-(...args: [...Any]) => Boolean
+Predicate = (...args: [...Any]) => Boolean
 ```
 
 #### The `Iterable` Type
@@ -241,15 +235,15 @@ Arrays, typed arrays, strings, maps and sets are iterable. Additionally any obje
 Is equivalent to
 
 ```ts
-interface IterableObject {
-  [Symbol.iterator]: () => Iterator
-}
-
 interface Iterator {
   next() => {
     done: Boolean,
     value?: Any
   }
+}
+
+interface IterableObject {
+  [Symbol.iterator]: () => Iterator
 }
 
 (paramName: IterableObject) => Void
@@ -261,22 +255,22 @@ It covers these contructors: `Int8Array`, `Uint8Array`, `Uint8ClampedArray`, `In
 
 ### Literal Types
 
-Literals are also accepted as types.
+Value literals are also accepted as types.
 
 ```js
-signatureName(param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
+signatureName = (param1: String, param2: 'value1' | 'value2' | 'value3') => -1 | 0 | 1
 ```
 
 ### Tuples
 
-The type of arrays' elements can also be specified:
+The type of arrays elements can also be specified:
 
 ```js
 // an array that contains exactly 2 elements
 [Number, String]
 ```
 
-For **∅ or more** and **1 or more** element(s) of the same type you can use the rest operator like so:
+For **0 or more** and **1 or more** element(s) of the same type you can use the rest operator like so:
 
 ```js
 // 0 or more
@@ -284,6 +278,7 @@ For **∅ or more** and **1 or more** element(s) of the same type you can use th
 
 // 1 or more
 [Number...]
+
 //which is equivalent to
 [Number, ...Number]
 ```
@@ -293,18 +288,18 @@ For **∅ or more** and **1 or more** element(s) of the same type you can use th
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: String|Number) => String|Number
+(userInput: String | Number) => String | Number
 ```
 
 ### Constructors
 
-Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
+Constructors and classes are denoted using the `class` keyword:
 
 ```js
-new User({ username: String }) => UserInstance
+class User({ username: String }) => UserInstance
 ```
 
-In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate signature is needed to describe the instances created by the function. For that, use a separate interface with a different name:
+In JavaScript, a class or constructor is not synonymous with an interface. The class or constructor definition describe the function signature to create the object instances. A separate interface is needed to describe the instances created by the function. For that, use a separate interface with a different name:
 
 ```js
 interface UserInstance {
@@ -318,10 +313,10 @@ interface UserInstance {
 An accessor function is defined by prefixing a method with `get` or `set`.
 
 ```js
-new User({ username: String }) => {
+class User({ username: String }) => {
   username: String,
   get name() => String,
-  set name(newName: String) // return type defaults to Void
+  set name(newName: String) => Void
 }
 ```
 
@@ -346,16 +341,17 @@ Is equivalent to:
 ```
 
 
+
 ### Dependencies
 
 You can optionally list your functions' dependencies. In the future, add-on tools may automatically scan your functions and list dependencies for you, which could be useful for documentation and to identify polyfill requirements.
 
 ```js
 // one dependency
-signatureName() => Type, requires: functionA
+signatureName = () => Type, requires: functionA
 
 // several dependencies
-signatureName()
+signatureName = ()
   => Type,
   requires: functionA, functionB
 ```
@@ -397,7 +393,7 @@ interface Name: /\w+/
 A regular function signature is a shorthand for a function interface:
 
 ```js
-user({ name: String, avatarUrl?: Url }) => UserInstance
+user = ({ name: String, avatarUrl?: Url }) => UserInstance
 ```
 
 A function interface must have a function signature:
