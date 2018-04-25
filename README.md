@@ -33,13 +33,14 @@ Intuitive structural type notation for JavaScript.
   - [Union Types](#union-types)
   - [Constructors](#constructors)
   - [Accessor Descriptors](#accessor-descriptors)
-  - [Throwing functions](#throwing-functions)
+  - [Throwing Functions](#throwing-functions)
   - [Dependencies](#dependencies)
 - [Interface: User Defined Types](#interface-user-defined-types)
   - [Function Interface](#function-interface)
+  - [`this` Binding](#this-binding)
   - [Dynamic Property Keys](#dynamic-property-keys)
   - [Predicate Literals](#predicate-literals)
-- [Composing types](#composing-types)
+- [Composing Types](#composing-types)
 - [Event Emitters](#event-emitters)
 - [Comments](#comments)
 - [References](#references)
@@ -325,7 +326,7 @@ new User({ username: String }) => {
 }
 ```
 
-### Throwing functions
+### Throwing Functions
 
 To indicate that a function can throw an error you can use the `throws` keyword.
 
@@ -471,6 +472,21 @@ interface Foo {
 }
 ```
 
+### `this` Binding
+
+Sometimes you want to define the shape of the call-site of a function; the `::` operator let's you do just that, _granted_ that you have declared the newly bound interface.  
+For convenience let's reuse the previously defined [`IterableObject` interface](#the-iterable-type):
+
+```js
+// IterableObject::head() => Any, throws: TypeError
+const head = function () {
+  const [first] = this;
+  return first;
+};
+
+head.call([1,2,3]); // 1
+```
+
 ### Dynamic Property Keys
 
 Dynamic properties may be labeled and typed. If omitted, the type defaults to `String`.
@@ -534,7 +550,7 @@ interface EnhancedInteger (number) => {
 }
 ```
 
-## Composing types
+## Composing Types
 
 Whenever you want to compose an interface out of several others, use the spread operator for that:
 
