@@ -320,7 +320,6 @@ JSON::parse(String, reviver: Function)
   throws SyntaxError
 ```
 
-
 ### Constructors
 
 Constructors in JavaScript require the `new` keyword. You can identify a constructor signature using the `new` keyword as if you were demonstrating usage:
