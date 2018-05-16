@@ -31,6 +31,7 @@ Intuitive structural type notation for JavaScript.
   - [Literal Types](#literal-types)
   - [Tuples](#tuples)
   - [Union Types](#union-types)
+  - [Negated Types](#negated-types)
   - [Constructors](#constructors)
   - [Accessor Descriptors](#accessor-descriptors)
   - [Throwing Functions](#throwing-functions)
