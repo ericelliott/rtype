@@ -304,7 +304,7 @@ It is sometime easier and more informative to delimit a type by defining what it
 
 ```js
 JSON::parse(String, reviver: Function)
-  => Boolean | Number | Object | Array | null,
+  => Boolean | Number | String | Object | Array | null,
   throws SyntaxError
 
 // is less concise than
