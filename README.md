@@ -67,7 +67,7 @@ Developer preview. [Please comment](https://github.com/ericelliott/rtype/issues/
 
 Currently in-use for production library API documentation, but breaking changes are expected.
 
-In the future, the `rtype` library will parse rtype strings and return predicate functions for runtime type checking. Static analysis tools are also [in development](https://github.com/ericelliott/rtype/issues/89). If you're interested in helping, [please contact us](https://github.com/ericelliott/rtype/issues/new?title=volunteer+for+tools).
+In the future, libraries may parse rtype strings and return predicate functions for runtime type checking. Static analysis tools are also [possible](https://github.com/ericelliott/rtype/issues/89), but no significant developer tooling is currently available. Feel free to build some!
 
 
 ### Why?
