@@ -31,6 +31,7 @@ Intuitive structural type notation for JavaScript.
   - [Literal Types](#literal-types)
   - [Tuples](#tuples)
   - [Union Types](#union-types)
+  - [Negated Types](#negated-types)
   - [Constructors](#constructors)
   - [Accessor Descriptors](#accessor-descriptors)
   - [Throwing Functions](#throwing-functions)
@@ -199,7 +200,7 @@ Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
-Note: `null` is part of `Any` and is *not* covered by `Object`.
+Note: `null` is part of `Any` and is *not* covered by `Object`. If you want to allow `null` with `Object`, you must specify the union explicitly: `Object | null`
 
 #### The `Any` Type
 
@@ -242,15 +243,15 @@ Arrays, typed arrays, strings, maps and sets are iterable. Additionally any obje
 Is equivalent to
 
 ```ts
-interface IterableObject {
-  [Symbol.iterator]: () => Iterator
-}
-
 interface Iterator {
   next() => {
     done: Boolean,
     value?: Any
   }
+}
+
+interface IterableObject {
+  [Symbol.iterator]: () => Iterator
 }
 
 (paramName: IterableObject) => Void
@@ -294,7 +295,29 @@ For **∅ or more** and **1 or more** element(s) of the same type you can use th
 Union types are denoted with the pipe symbol, `|`:
 
 ```js
-(userInput: String|Number) => String|Number
+(userInput: String | Number) => String | Number
+```
+
+### Negated Types
+
+It is sometime easier and more informative to delimit a type by defining what it's not. The negation operator lets you exclude by substracting from `Any`.
+
+```js
+JSON::parse(String, reviver: Function)
+  => Boolean | Number | String | Object | Array | null,
+  throws SyntaxError
+
+// is less concise than
+
+JSON::parse(String, reviver: Function)
+  => !Function & !Void & !Symbol,
+  throws SyntaxError
+
+// which is equivalent to
+
+JSON::parse(String, reviver: Function)
+  => !(Function | Void | Symbol),
+  throws SyntaxError
 ```
 
 ### Constructors
@@ -474,7 +497,7 @@ interface Foo {
 
 ### `this` Binding
 
-Sometimes you want to define the shape of the call-site of a function; the `::` operator let's you do just that, _granted_ that you have declared the newly bound interface.  
+Sometimes you want to define the shape of the call-site of a function; the `::` operator lets you do just that, _granted_ that you have declared the newly bound interface.  
 For convenience let's reuse the previously defined [`IterableObject` interface](#the-iterable-type):
 
 ```js
