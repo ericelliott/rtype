@@ -300,7 +300,7 @@ Union types are denoted with the pipe symbol, `|`:
 
 ### Negated Types
 
-It is sometime easier and more informative to delimit a type by defining what it's not. The negation operator let's you exclude by substracting from `Any`.
+It is sometime easier and more informative to delimit a type by defining what it's not. The negation operator lets you exclude by substracting from `Any`.
 
 ```js
 JSON::parse(String, reviver: Function)
@@ -316,7 +316,7 @@ JSON::parse(String, reviver: Function)
 // which is equivalent to
 
 JSON::parse(String, reviver: Function)
-  => !(Function & Void & Symbol),
+  => !(Function | Void | Symbol),
   throws SyntaxError
 ```
 
@@ -497,7 +497,7 @@ interface Foo {
 
 ### `this` Binding
 
-Sometimes you want to define the shape of the call-site of a function; the `::` operator let's you do just that, _granted_ that you have declared the newly bound interface.  
+Sometimes you want to define the shape of the call-site of a function; the `::` operator lets you do just that, _granted_ that you have declared the newly bound interface.  
 For convenience let's reuse the previously defined [`IterableObject` interface](#the-iterable-type):
 
 ```js
