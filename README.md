@@ -200,7 +200,10 @@ Array, Boolean, Function, Number, Object, RegExp, String, Symbol
 ArrayBuffer, Date, Error, Map, Promise, Proxy, Set, WeakMap, WeakSet
 ```
 
-Note: `null` is part of `Any` and is *not* covered by `Object`. If you want to allow `null` with `Object`, you must specify the union explicitly: `Object | null`
+##### Notes
+
+- `null` is part of `Any` and is *not* covered by `Object`. If you want to allow `null` with `Object`, you must specify the union explicitly: `Object | null`
+- the `Function` builtin type expands to `(...args: [...Any]) => Any`
 
 #### The `Any` Type
 
